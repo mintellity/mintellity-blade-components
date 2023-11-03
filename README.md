@@ -15,7 +15,7 @@ composer require mintellity/blade-components
 
 ## Usage
 
-### Accordion
+### [Accordion](https://getbootstrap.com/docs/5.1/components/accordion/)
 ```php
 <x-mint::accordion.host id="tools">
     <x-mint::accordion.item title="Title" accordion-id="tools" id="item">
@@ -35,7 +35,7 @@ Optional Item-Attributes:
  - active
  - livewire-ignore Adds `wire:ignore.self` to the item title and content to prevent Livewire from resetting the active state
 
-### Form-Inputs
+### [Form-Inputs](https://getbootstrap.com/docs/5.1/forms/overview/)
 ```php
 <x-mint::form.input name="name" label="Betrag" value="100">
     <x-mint::form.input.prepend>Ab</x-mint::form.input.prepend>
@@ -98,7 +98,7 @@ Font-Awesome-Icon
 Attributes:
  - name
 
-### Modal
+### [Modal](https://getbootstrap.com/docs/5.1/components/modal/)
 ```php
 <x-mint::modal id="tools">
     <x-mint::modal.header>
@@ -116,7 +116,7 @@ Attributes:
 </x-mint::modal>
 ```
 
-### Tabs
+### [Tabs](https://getbootstrap.com/docs/5.1/components/navs-tabs/#javascript-behavior)
 ```php
 <x-mint::tabs.host id="tools">
     <x-mint::tabs.item title="Title" id="item">
