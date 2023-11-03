@@ -22,7 +22,7 @@ class BladeComponentsServiceProvider extends PackageServiceProvider
 
     public function bootingPackage()
     {
-//        Blade::componentNamespace('Nightshade\\Views\\Components', 'nightshade');
-//        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'bs');
+        //        Blade::componentNamespace('Nightshade\\Views\\Components', 'nightshade');
+        //        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'bs');
     }
 }
