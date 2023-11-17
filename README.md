@@ -63,6 +63,10 @@ Optional Attributes:
 ```
 
 ```php
+<x-mint::form.toggle name="name" />
+```
+
+```php
 <x-mint::form.select name="name" :options="['value' => 'Name']" />
 ```
 

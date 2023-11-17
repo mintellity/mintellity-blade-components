@@ -9,6 +9,7 @@
     'value' => null,
     'required' => false,
     'disabled' => false,
+    'readonly' => false,
     'prepend' => null,
     'append' => null,
     'step' => null,
@@ -16,7 +17,7 @@
 
 <div class="fv-row mb-7 form-group">
     <label class="fs-6 fw-bold form-label mt-3" for="{{ $name }}">
-        @if($required)
+        @if ($required)
             <span class="required">{{ $label }}</span>
         @else
             {{ $label }}
@@ -37,9 +38,10 @@
             @isset($accept) accept="{{ $accept }}" @endisset
             @isset($min) min="{{ $min }}" @endisset
             @isset($max) max="{{ $max }}" @endisset
-            @if($required) required @endif
-            @if($disabled) disabled @endif
-            @if($step) step="{{ $step }}" @endif
+            @if ($required) required @endif
+            @if ($disabled) disabled @endif
+            @if ($readonly) readonly @endif
+            @if ($step) step="{{ $step }}" @endif
             {{ $attributes->whereStartsWith('wire:') }}>
 
         @isset($append)
