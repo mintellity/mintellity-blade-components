@@ -15,6 +15,7 @@
     'step' => null,
 ])
 
+
 <div class="fv-row mb-7 form-group">
     <label class="fs-6 fw-bold form-label mt-3" for="{{ $name }}">
         @if ($required)
