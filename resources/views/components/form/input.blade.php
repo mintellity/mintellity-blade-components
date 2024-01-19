@@ -15,9 +15,8 @@
     'step' => null,
 ])
 
-
-<div class="fv-row mb-7 form-group">
-    <label class="fs-6 fw-bold form-label mt-3" for="{{ $name }}">
+<div class="form-group mb-3">
+    <label class="form-label" for="{{ $name }}">
         @if ($required)
             <span class="required">{{ $label }}</span>
         @else
@@ -25,13 +24,13 @@
         @endif
     </label>
 
-    <div class="input-group input-group-solid">
+    <div class="input-group">
         @isset($prepend)
             {{ $prepend }}
         @endisset
 
         <input
-            @class(["form-control form-control-solid", "is-invalid" => $errors->has($name)])
+            @class(["form-control", "is-invalid" => $errors->has($name)])
             id="{{ $name }}"
             name="{{ $name }}"
             type="{{ $type ?? 'text' }}"
@@ -45,6 +44,8 @@
             @if ($step) step="{{ $step }}" @endif
             {{ $attributes->whereStartsWith('wire:') }}>
 
+        <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
+
         @isset($append)
             {{ $append }}
         @endisset
@@ -52,5 +53,4 @@
     @isset($hint)
         <small class="form-text text-muted">{{ $hint }}</small>
     @endisset
-    <div class="fv-plugins-message-container invalid-feedback">@error($name){{ $message }}@enderror</div>
 </div>
