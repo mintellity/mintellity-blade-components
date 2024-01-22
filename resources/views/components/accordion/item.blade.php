@@ -2,6 +2,8 @@
     'title',
     'active' => false,
     'id' => Str::random(8),
+    'accordionId',
+    'icon' => false,
     'livewireIgnore' => true,
 ])
 
@@ -9,13 +11,16 @@
     <h2 class="accordion-header"
         id="heading-{{ $id }}">
         <button
-            @class(['accordion-button accordion-button-flush', 'collapsed' => !$active])
+            @class(['accordion-button', 'collapsed' => !$active])
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#collapse-{{ $id }}"
             aria-expanded="{{ json_encode($active) }}"
             aria-controls="collapse-{{ $id }}"
             @if($livewireIgnore) wire:ignore.self @endif>
+            @if($icon)
+                <x-mint::icon name="{{$icon}}" class="me-2" />
+            @endif
             {{ $title }}
         </button>
     </h2>
