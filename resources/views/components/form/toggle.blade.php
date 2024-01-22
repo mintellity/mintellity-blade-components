@@ -33,7 +33,7 @@
         </label>
     </div>
 
-    <div class="fv-plugins-message-container invalid-feedback">
+    <div class="invalid-feedback">
         @error($name){{ $message }}@enderror
     </div>
 </div>
