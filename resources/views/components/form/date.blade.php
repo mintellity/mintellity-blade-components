@@ -1,12 +1,12 @@
-<div  {{ $attributes->class(['fv-row mb-7 form-group']) }}>
-    <label class="fs-6 fw-bold form-label mt-3" @if(isset($id)) for="{{$id}}" @else for="{{$name}}"@endif>
+<div {{ $attributes->class(['mb-3']) }}>
+    <label class="form-label" @if(isset($id)) for="{{$id}}" @else for="{{$name}}"@endif>
         @if(isset($required))
             <span class="required">{{$label}}</span>
         @else
             {{$label}}
         @endif
     </label>
-    <input class="form-control form-control-solid pikaday" name="{{$name}}"
+    <input class="form-control pikaday" name="{{$name}}"
            type="text"
            @if(isset($id))
                id="{{$id}}"
@@ -14,5 +14,5 @@
                id="{{$name}}"
            @endif
            @if(isset($value)) value="{{$value}}" @endif>
-    <div class="fv-plugins-message-container invalid-feedback"></div>
+    <div class="invalid-feedback"></div>
 </div>

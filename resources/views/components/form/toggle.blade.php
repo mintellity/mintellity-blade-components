@@ -8,8 +8,8 @@
     'readonly' => false,
 ])
 
-<div {{ $attributes->class("fv-row mb-7 form-group d-flex h-100")->whereDoesntStartWith('wire:') }}>
-    <label class="form-check form-switch form-check-custom form-check-solid mt-3">
+<div {{ $attributes->class("mb-3")->whereDoesntStartWith('wire:') }}>
+    <div class="form-check form-switch">
         <input
             @class(["form-check-input", "is-invalid" => $errors->has($name)])
             id="{{ $name }}"
@@ -28,10 +28,10 @@
                 {{ $attributes->whereStartsWith('wire:') }} />
         @endif
 
-        <span @class(["form-check-label fw-bold text-muted","required" => $required])>
+        <label for="{{ $name }}" @class(["form-check-label","required" => $required])>
             {{ $label }}
-        </span>
-    </label>
+        </label>
+    </div>
 
     <div class="fv-plugins-message-container invalid-feedback">
         @error($name){{ $message }}@enderror

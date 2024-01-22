@@ -8,9 +8,15 @@
     'options' => [],
     'selected' => null
 ])
-
-<div class="fv-row mb-7 form-group">
-    <label class="fs-6 fw-bold form-label mt-3" for="{{ $name }}">
+<?php
+$options = [
+        'option1' => 'Option 1 Label',
+        'option2' => 'Option 2 Label',
+        'option3' => 'Option 3 Label',
+    ];
+?>
+<div {{ $attributes->class(['mb-3']) }}>
+    <label class="form-label" for="{{ $name }}">
         @if ($required)
             <span class="required">{{ $label }}</span>
         @else
@@ -19,7 +25,7 @@
     </label>
 
     <select
-        @class(["form-select form-select-solid", "is-invalid" => $errors->has($name)])
+        @class(["form-select", "is-invalid" => $errors->has($name)])
         name="{{ $name }}"
         id="{{ $name }}"
         @if ($required) required @endif
@@ -42,5 +48,5 @@
     @isset($hint)
         <small class="form-text text-muted">{{ $hint }}</small>
     @endisset
-    <div class="fv-plugins-message-container invalid-feedback">@error($name){{ $message }}@enderror</div>
+    <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
 </div>

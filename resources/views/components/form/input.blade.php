@@ -15,7 +15,7 @@
     'step' => null,
 ])
 
-<div class="form-group mb-3">
+<div {{ $attributes->class(['mb-3']) }}>
     <label class="form-label" for="{{ $name }}">
         @if ($required)
             <span class="required">{{ $label }}</span>

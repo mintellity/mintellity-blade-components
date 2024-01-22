@@ -1,16 +1,20 @@
-@isset($label)
-    <label>{{ $label }}</label>
-@endisset
-@foreach($items as $key => $value)
-    <div class="form-group d-flex justify-content-start">
-        <label class="form-check form-check-custom form-check-solid mt-3">
+<div {{ $attributes->class(['mb-3']) }}>
+    @isset($label)
+        <span class="d-block form-label">{{ $label }}</span>
+    @endisset
+    @foreach($items as $key => $value)
+        <div @class(["form-check", "form-check-inline" => isset($inline)])>
             <input class="form-check-input" name="{{$name}}"
                    type="radio" id="{{$key}}"
                    @if(isset($value)) value="{{$value}}" @endif>
-            <span class="form-check-label fw-bold @if(isset($required)) required @endif"> {{$value}} </span>
-        </label>
-        <div class="fv-plugins-message-container invalid-feedback"></div>
-    </div>
-@endforeach
-
-
+            <label for="{{$key}}" class="form-check-label">
+                @if (isset($required))
+                    <span class="required">{{ $value }}</span>
+                @else
+                    {{ $value }}
+                @endif
+            </label>
+        </div>
+    @endforeach
+    <div class="invalid-feedback"></div>
+</div>
