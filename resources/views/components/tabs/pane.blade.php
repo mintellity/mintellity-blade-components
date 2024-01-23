@@ -28,7 +28,7 @@
     <div @class(['tab-pane fade', 'show active' => $active ?? false])
          id="{{ $id }}-content"
          role="tabpanel"
-         aria-labelledby="#{{ $id }}-title">
+         aria-labelledby="{{ $id }}-title">
         {{ $slot }}
     </div>
 @endpush
