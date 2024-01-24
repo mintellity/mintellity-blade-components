@@ -19,8 +19,8 @@
         <div @class(["form-check", "form-check-inline" => $inline, $itemClass => $itemClass])>
             <input class="form-check-input" name="{{$name}}"
                    type="radio" id="{{$id}}-{{$key}}"
-                   @if($item['value']) value="{{$item['value']}}"  @endif
-                   @if($item['active']) checked @endif @if($item['disabled']) disabled @endif>
+                   @if(isset($item['value'])) value="{{$item['value']}}"  @endif
+                   @if(isset($item['active'])) checked @endif @if(isset($item['disabled'])) disabled @endif>
             <label for="{{$id}}-{{$key}}" class="form-check-label">
                 @if (isset($required))
                     <span class="required">{{ $item['label'] }}</span>
