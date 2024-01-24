@@ -6,15 +6,10 @@
     'disabled' => false,
     'readonly' => false,
     'options' => [],
-    'selected' => null
+    'selected' => null,
+    'placeholder' => null,
+    'multiple' => false
 ])
-<?php
-$options = [
-        'option1' => 'Option 1 Label',
-        'option2' => 'Option 2 Label',
-        'option3' => 'Option 3 Label',
-    ];
-?>
 <div {{ $attributes->class(['mb-3']) }}>
     <label class="form-label" for="{{ $name }}">
         @if ($required)
@@ -30,12 +25,14 @@ $options = [
         id="{{ $name }}"
         @if ($required) required @endif
         @if ($disabled || $readonly) disabled @endif
+        @if($multiple) multiple @endif
         {{ $attributes->whereStartsWith('wire:') }}>
-
-        @foreach ($options as $value => $optionLabel)
-            <option value="{{ $value }}" @if ($selected == $value) selected @endif>{{ $optionLabel }}</option>
+        @if($placeholder)
+            <option value="">{{$placeholder}}</option>
+        @endif
+        @foreach ($options as $value => $option)
+            <option value="{{ $option['value'] }}" @if ($option['selected']) selected @endif>{{ $option['label'] }}</option>
         @endforeach
-
     </select>
 
     @if($readonly && !$disabled)
