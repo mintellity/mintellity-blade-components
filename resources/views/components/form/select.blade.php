@@ -31,7 +31,8 @@
             <option value="">{{$placeholder}}</option>
         @endif
         @foreach ($options as $value => $option)
-            <option value="{{ $option['value'] }}" @if ($option['selected']) selected @endif>{{ $option['label'] }}</option>
+            <option @if(isset($option['value'])) value="{{ $option['value'] }}" @endif
+                    @if(isset($option['selected'])) selected @endif>{{ $option['label'] }}</option>
         @endforeach
     </select>
 
