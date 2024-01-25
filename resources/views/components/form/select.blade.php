@@ -8,7 +8,8 @@
     'value' => null,
     'disabled' => [],
     'placeholder' => null,
-    'multiple' => false
+    'multiple' => false,
+    'selectClass' => null
 ])
 <div {{ $attributes->class(['mb-3']) }}>
     <label class="form-label" for="{{ $name }}">
@@ -20,7 +21,7 @@
     </label>
 
     <select
-        @class(["form-select", "is-invalid" => $errors->has($name)])
+        @class(["form-select", "is-invalid" => $errors->has($name), $selectClass => $selectClass])
         name="{{ $name }}"
         id="{{ $name }}"
         @if ($required) required @endif
