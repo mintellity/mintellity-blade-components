@@ -1,11 +1,14 @@
-$(document).ready(function () {
-    const textarea = $('textarea.dynamic-height');
+document.addEventListener("DOMContentLoaded", function () {
+    const growers = document.querySelectorAll(".grow-wrap");
 
-    textarea.each(function () {
-        $(this).parent().attr('data-replicated-value', $(this).val());
-    })
+    growers.forEach((grower) => {
+        const textarea = grower.querySelector("textarea");
 
-    textarea.on('input', function () {
-        $(this).parent().attr('data-replicated-value', $(this).val());
-    })
+        grower.dataset.replicatedValue = textarea.value;
+
+        textarea.addEventListener("input", () => {
+            grower.dataset.replicatedValue = textarea.value;
+        });
+    });
+
 });
