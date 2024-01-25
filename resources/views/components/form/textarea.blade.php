@@ -8,7 +8,7 @@
     </label>
     <div class="grow-wrap">
         @isset($prepend){{ $prepend }}@endisset
-        <textarea class="form-control form-control-solid dynamic-height" name="{{$name}}"
+        <textarea class="form-control form-control-solid" name="{{$name}}"
                type="text"
                @if(isset($id))
                    id="{{$id}}"
