@@ -13,6 +13,24 @@ You can install the package via composer:
 composer require mintellity/blade-components
 ```
 
+Some components depend on further npm libraries. We bundled them in the package.json file. You can install them via npm:
+
+```bash
+npm install ./vendor/mintellity/blade-components
+```
+
+And then require the js and css files in your app.js and app.scss files:
+
+```scss
+// app.css
+@import '../../../node_modules/mintellity-blade-components/resources/css/index.css';
+```
+
+```js
+// app.js
+require('../../node_modules/mintellity-blade-components/resources/js/index');
+```
+
 ## Usage
 
 The following components are available in this package:
