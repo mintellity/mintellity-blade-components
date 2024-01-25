@@ -2,31 +2,29 @@
     'label',
     'name',
     'hint' => null,
-    'checked' => false,
     'required' => false,
-    'disabled' => false,
     'items' => [],
     'inline' => false,
     'id' => Str::random(8),
-    'itemClass' => null
+    'value' => [],
+    'disabled' => [],
+    'itemClass' => null,
 ])
 <div {{ $attributes->class(['mb-3']) }}>
     @isset($label)
-        <span class="d-block form-label">{{ $label }}</span>
+        <span @class(["d-block form-label", $required => "required"])>
+           {{ $label }}
+        </span>
     @endisset
-    @foreach($items as $key => $item)
+    @foreach($items as $key => $itemLabel)
         <div @class(["form-check", "form-check-inline" => $inline, $itemClass => $itemClass])>
             <input class="form-check-input" name="{{$name}}"
                    type="checkbox" id="{{$id}}-{{$key}}"
-                   @if(isset($item['value'])) value="{{$item['value']}}"  @endif
-                   @if(isset($item['checked'])) checked @endif
-                   @if(isset($item['disabled'])) disabled @endif>
+                   value="{{ $key }}"
+                   @if(in_array($key, $value)) checked @endif
+                   @if(in_array($key, $disabled)) disabled @endif>
             <label for="{{$id}}-{{$key}}" class="form-check-label">
-                @if (isset($required))
-                    <span class="required">{{ $item['label'] }}</span>
-                @else
-                    {{ $item['label'] }}
-                @endif
+                {{ $itemLabel }}
             </label>
         </div>
     @endforeach

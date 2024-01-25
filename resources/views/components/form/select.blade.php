@@ -3,10 +3,10 @@
     'name' => '',
     'hint' => null,
     'required' => false,
-    'disabled' => false,
     'readonly' => false,
     'options' => [],
-    'selected' => null,
+    'value' => null,
+    'disabled' => [],
     'placeholder' => null,
     'multiple' => false
 ])
@@ -30,9 +30,11 @@
         @if($placeholder)
             <option value="">{{$placeholder}}</option>
         @endif
-        @foreach ($options as $value => $option)
-            <option @if(isset($option['value'])) value="{{ $option['value'] }}" @endif
-                    @if(isset($option['selected'])) selected @endif>{{ $option['label'] }}</option>
+        @foreach ($options as $key => $optionLabel)
+            <option value="{{ $key }}"
+                    @if($key === $value) selected @endif>
+                {{ $optionLabel }}
+            </option>
         @endforeach
     </select>
 
