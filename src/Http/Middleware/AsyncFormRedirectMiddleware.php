@@ -8,7 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class AjaxRedirectMiddleware
+class AsyncFormRedirectMiddleware
 {
     /**
      * Send redirect URL as JSON response if request comes from AJAX.
