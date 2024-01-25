@@ -1,3 +1,26 @@
+# Asynchronous Form-Validation
+Requires [async-form.js](../resources/js/async-form.js).
+
+To use asynchronous form-validation ("Ajax-Form"), you need to add the `AsyncFormRedirectMiddleware` to the àpp/Http/Kernel.php`-file:
+
+```php
+protected $middlewareGroups = [
+    'web' => [
+        // ...
+        \Mintellity\BladeComponents\Http\Middleware\AsyncFormRedirectMiddleware::class
+    ],
+];
+```
+
+Then you can use the form component to asynchronously validate the form and display the errors:
+
+```html
+<x-mint::form action="{{ route('route') }}" method="post">
+    <x-mint::form.input name="name" label="Name" />
+    ...
+</x-mint::form>
+```
+
 # Form-Inputs
 [Bootstrap-Components](https://getbootstrap.com/docs/5.3/forms/overview/)
 
@@ -68,14 +91,14 @@
 ```
 
 ### Textarea
-Automatic height resizing depending on content. Needs [textarea.js](../resources/js/textarea.js)
+Automatic height resizing depending on content. Requires [textarea.js](../resources/js/textarea.js) and [textarea.css](../resources/css/textarea.css).
 
 ```php
 <x-mint::form.textarea name="name" />
 ```
 
 ### Date
-Using [Pikaday](https://github.com/Pikaday/Pikaday)
+Using [Pikaday](https://github.com/Pikaday/Pikaday). Requires [datepicker.js](../resources/js/datepicker.js) and [datepicker.css](../resources/css/datepicker.css).
 
 ```php
 <x-mint::form.date name="name" />
