@@ -12,8 +12,12 @@
 ])
 <div {{ $attributes->class(['mb-3']) }}>
     @isset($label)
-        <span @class(["d-block form-label", $required => "required"])>
-           {{ $label }}
+        <span class="d-block form-label">
+            @if ($required)
+                <span class="required">{{ $label }}</span>
+            @else
+                {{ $label }}
+            @endif
         </span>
     @endisset
     @foreach($items as $key => $itemLabel)
