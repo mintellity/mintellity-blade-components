@@ -12,7 +12,7 @@
 <div {{ $attributes->class("mb-3")->whereDoesntStartWith('wire:') }}>
     <div @class(["form-check form-switch", $toggleClass => $toggleClass])>
         <input
-            @class(["form-check-input", "is-invalid" => $errors->has($name), $toggleClass => $toggleClass])
+            @class(["form-check-input", "is-invalid" => $errors->has($name)])
             id="{{ $name }}"
             name="{{ $name }}"
             type="checkbox"
