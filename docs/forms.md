@@ -40,7 +40,7 @@
 <x-mint::form.checkbox name="checkbox" :items="['value1' => 'Name 1', 'value2' => 'Name 2']" />
 ```
 
-### Toggle (Checkbox Switche)
+### Toggle (Checkbox Switch)
 [Bootstrap-Components](https://getbootstrap.com/docs/5.3/forms/checks-radios/#switches)
 [Frest-Theme](https://demos.pixinvent.com/frest-html-admin-template/html/vertical-menu-template-bordered/forms-basic-inputs.html#flexSwitchCheckDefault)
 
