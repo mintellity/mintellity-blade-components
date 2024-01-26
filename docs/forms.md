@@ -74,7 +74,6 @@
 
 ### File
 [Bootstrap-Components](https://getbootstrap.com/docs/5.3/forms/form-control/#file-input)
-[Frest-Theme](https://demos.pixinvent.com/frest-html-admin-template/html/vertical-menu-template-bordered/forms-basic-inputs.html#formFile)
 
 ```php
 <x-mint::form.file name="name" />
@@ -95,6 +94,7 @@ Using [Pikaday](https://github.com/Pikaday/Pikaday)
 ```
 
 ### Time
+Using [Pikaday](https://github.com/Pikaday/Pikaday)
 
 ```php
 <x-mint::form.time name="name" />
