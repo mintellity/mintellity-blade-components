@@ -57,7 +57,7 @@
 #### Synced Switches
 ```php
 <div class="switches-stacked">
-    <x-mint::form.switch name="name" checked sync />
+    <x-mint::form.switch name="name" sync />
     <x-mint::form.switch name="name" sync />
 </div>
 ```
