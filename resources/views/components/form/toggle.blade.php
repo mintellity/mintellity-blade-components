@@ -6,11 +6,11 @@
     'required' => false,
     'disabled' => false,
     'readonly' => false,
-    'toggleClass' => null
+    'itemClass' => null
 ])
 
 <div {{ $attributes->class("mb-3")->whereDoesntStartWith('wire:') }}>
-    <div @class(["form-check form-switch", $toggleClass => $toggleClass])>
+    <div @class(["form-check form-switch", $itemClass => $itemClass])>
         <input
             @class(["form-check-input", "is-invalid" => $errors->has($name)])
             id="{{ $name }}"

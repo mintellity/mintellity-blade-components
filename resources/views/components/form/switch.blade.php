@@ -6,11 +6,11 @@
     'required' => false,
     'disabled' => false,
     'readonly' => false,
-    'switchClass' => null,
+    'itemClass' => null,
     'sync' => false
 ])
 <div {{ $attributes->class("mb-3")->whereDoesntStartWith('wire:') }}>
-    <label @class(["switch", $switchClass => $switchClass])>
+    <label @class(["switch", $itemClass => $itemClass])>
         <input
             @class(["switch-input", "is-invalid" => $errors->has($name)])
             id="{{ $name }}"
