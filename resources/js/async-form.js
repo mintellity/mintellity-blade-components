@@ -7,20 +7,22 @@ document.body.addEventListener('submit', async function (e) {
     e.preventDefault();
 
     let submitButton = form.querySelector('button[type=submit]');
-    let oldSubmitMessage = submitButton?.value || submitButton?.textContent;
+    let originalButtonLabel = null;
 
-    if (!submitButton)
-        return;
+    if (submitButton) {
+        originalButtonLabel = submitButton?.value || submitButton?.textContent;
 
-    submitButton?.setAttribute('disabled', 'disabled');
-    submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Lädt...';
+        submitButton?.setAttribute('disabled', 'disabled');
+        submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Lädt...';
+    }
 
+    // Remove all error messages
     form.querySelectorAll('.form-control, .form-check-input').forEach(el => el.classList.remove('is-invalid'));
 
-    let action = form.getAttribute('action');
-    let formData = new FormData(form);
-    let method = form.getAttribute('method') || "post";
-    let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const method = form.getAttribute('method') || "post";
+    const action = form.getAttribute('action');
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const formData = new FormData(form);
 
     fetch(action, {
         method: method,
@@ -31,24 +33,22 @@ document.body.addEventListener('submit', async function (e) {
         body: formData
     })
         .then((response) => {
-            console.log('1', response.status)
-            // If response not 422, cancel
-            if (response.status !== 422)
-                return Promise.reject();
+            // If response not 422 (Validation errors) or 200 (redirect), cancel
+            if (response.status !== 422 && response.status !== 200)
+                return Promise.reject(response);
             else
                 return response.json()
         })
         .then((data) => {
-            console.log('2')
             if (data.redirect) {
-                document.location.href = data.redirect;
-                return Promise.reject();
+                window.location.replace(data.redirect);
+                return Promise.resolve();
             }
 
             let errors = data.errors;
 
             if (!errors)
-                return Promise.reject();
+                return Promise.resolve();
 
             for (let field in errors) {
                 if (!errors.hasOwnProperty(field))
@@ -57,11 +57,11 @@ document.body.addEventListener('submit', async function (e) {
                 setFieldError(field, errors[field].join('<br>'));
             }
         })
-        .catch()
+        .catch((reason) => console.warn(reason))
         .finally(() => {
             submitButton.removeAttribute('disabled');
-            submitButton.value = oldSubmitMessage;
-            submitButton.textContent = oldSubmitMessage;
+            submitButton.value = originalButtonLabel;
+            submitButton.textContent = originalButtonLabel;
         });
 
     function setFieldError(field, message) {
