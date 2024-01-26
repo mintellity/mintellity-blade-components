@@ -40,7 +40,7 @@
 <x-mint::form.checkbox name="checkbox" :items="['value1' => 'Name 1', 'value2' => 'Name 2']" />
 ```
 
-### Toggle (Checkbox Switch)
+### Toggle
 [Bootstrap-Components](https://getbootstrap.com/docs/5.3/forms/checks-radios/#switches)
 [Frest-Theme](https://demos.pixinvent.com/frest-html-admin-template/html/vertical-menu-template-bordered/forms-basic-inputs.html#flexSwitchCheckDefault)
 
@@ -48,12 +48,18 @@
 <x-mint::form.toggle name="name" />
 ```
 
-### Switch (Radio)
-[Bootstrap-Components](https://getbootstrap.com/docs/5.3/forms/checks-radios/#switches)
+### Switch
 [Frest-Theme](https://demos.pixinvent.com/frest-html-admin-template/html/vertical-menu-template-bordered/forms-switches.html)
 
 ```php
 <x-mint::form.switch name="name" />
+```
+#### Synced Switches
+```php
+<div class="switches-stacked">
+    <x-mint::form.switch name="name" checked sync />
+    <x-mint::form.switch name="name" sync />
+</div>
 ```
 
 ### Select
