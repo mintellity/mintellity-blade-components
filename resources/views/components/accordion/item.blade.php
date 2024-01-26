@@ -5,7 +5,7 @@
     'accordionId',
     'icon' => false,
     'livewireIgnore' => true,
-    'accordionNoSync' => false
+    'noSync' => false
 ])
 
 <div {{ $attributes->class(['accordion-item', 'active' => $active]) }}>
@@ -29,7 +29,7 @@
          @class(['accordion-collapse collapse', 'show' => $active])
          aria-labelledby="heading-{{ $id }}"
          wire:ignore.self
-         @if(!$accordionNoSync)
+         @if(!$noSync)
              data-bs-parent="#{{ $accordionId }}"
          @endif
          @if($livewireIgnore) wire:ignore.self @endif>
