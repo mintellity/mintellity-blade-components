@@ -6,7 +6,8 @@
     'required' => false,
     'disabled' => false,
     'readonly' => false,
-    'switchClass' => null
+    'switchClass' => null,
+    'stacked' => false
 ])
 <div {{ $attributes->class("mb-3")->whereDoesntStartWith('wire:') }}>
     <label @class(["switch", $switchClass => $switchClass])>
@@ -14,7 +15,11 @@
             @class(["switch-input", "is-invalid" => $errors->has($name)])
             id="{{ $name }}"
             name="{{ $name }}"
-            type="radio"
+            @if($stacked)
+                type="radio"
+            @else
+                type="checkbox"
+            @endif
             value="{{ $value }}"
             @checked($checked)
             @disabled($disabled || $readonly)
