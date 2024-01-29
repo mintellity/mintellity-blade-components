@@ -4,7 +4,7 @@
 
 ```php
 <x-mint::accordion.host id="tools">
-    <x-mint::accordion.item title="Title" accordion-id="tools" id="item">
+    <x-mint::accordion.item title="Title" accordion-id="tools">
         Content
     </x-mint::accordion.item>
 </x-mint::accordion.host>
@@ -13,7 +13,7 @@
 ### Always Open Panel
 ```php
 <x-mint::accordion.host id="tools">
-    <x-mint::accordion.item title="Title" accordion-id="tools" id="item" active no-sync>
+    <x-mint::accordion.item title="Title" accordion-id="tools" active no-sync>
         Content
     </x-mint::accordion.item>
 </x-mint::accordion.host>
