@@ -1,4 +1,4 @@
-<div class="modal-dialog">
+<div {{ $attributes->class(['modal-dialog']) }} role="document">
     <div class="modal-content">
         {{ $slot }}
     </div>

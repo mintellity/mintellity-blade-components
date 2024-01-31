@@ -6,16 +6,20 @@
     'required' => false,
     'disabled' => false,
     'readonly' => false,
-    'itemClass' => null
+    'itemClass' => null,
+    'sync' => false
 ])
-
 <div {{ $attributes->class("mb-3")->whereDoesntStartWith('wire:') }}>
-    <div @class(["form-check form-switch", $itemClass => $itemClass])>
+    <label @class(["switch", $itemClass => $itemClass])>
         <input
-            @class(["form-check-input", "is-invalid" => $errors->has($name)])
+            @class(["switch-input", "is-invalid" => $errors->has($name)])
             id="{{ $name }}"
             name="{{ $name }}"
-            type="checkbox"
+            @if($sync)
+                type="radio"
+            @else
+                type="checkbox"
+            @endif
             value="{{ $value }}"
             @checked($checked)
             @disabled($disabled || $readonly)
@@ -27,12 +31,16 @@
                 value="{{ $value }}"
                 {{ $attributes->whereStartsWith('wire:') }} />
         @endif
+        <span class="switch-toggle-slider">
+            <span class="switch-on"> <x-mint::icon name="check" /></span>
+            <span class="switch-off"> <x-mint::icon name="x" /></span>
+        </span>
         @if(isset($label))
-            <label for="{{ $name }}" @class(["form-check-label","required" => $required])>
+            <span for="{{ $name }}" @class(["switch-label","required" => $required])>
                 {{ $label }}
-            </label>
+            </span>
         @endif
-    </div>
+    </label>
 
     <div class="invalid-feedback">
         @error($name){{ $message }}@enderror
