@@ -1,0 +1,15 @@
+{
+    "private": true,
+    "name": "mintellity-blade-components",
+    "description": "Frontend bundle for corresponding composer package",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mintellity/mintellity-blade-components.git"
+    },
+    "author": "Mintellity GmbH",
+    "license": "MIT",
+    "dependencies": {
+        "moment": "^2.30.1",
+        "pikaday": "^1.8.2"
+    }
+}
