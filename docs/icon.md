@@ -1,5 +1,5 @@
 # Icon
-[Font-Awesome-Icons](https://fontawesome.com/icons)
+[Boxicons](https://boxicons.com/)
 
 ```php
 <x-mint::icon name="arrow-left" class="text-primary" />
@@ -7,6 +7,6 @@
 
 ## Attributes:
 
-| Attribute | Description                                            |
-|-----------|--------------------------------------------------------|
-| name      | Name of the Font-Awesome-Icon without the "fa"- prefix |
+| Attribute | Description                                   |
+|-----------|-----------------------------------------------|
+| name      | Name of the Boxicons without the "bx"- prefix |
