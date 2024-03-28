@@ -6,11 +6,10 @@
     'required' => false,
     'disabled' => false,
     'readonly' => false,
-    'itemClass' => null,
     'sync' => false
 ])
-<div {{ $attributes->class("mb-3")->whereDoesntStartWith('wire:') }}>
-    <label @class(["switch", $itemClass => $itemClass])>
+<div @class(["mb-3", "invalid-feedback-group" => $required]) {{ $attributes->whereDoesntStartWith('wire:') }}>
+    <label {{ $attributes->class(["switch"]) }}>
         <input
             @class(["switch-input", "is-invalid" => $errors->has($name)])
             id="{{ $name }}"
@@ -41,6 +40,10 @@
             </span>
         @endif
     </label>
+
+    @isset($hint)
+        <small class="form-text text-muted">{{ $hint }}</small>
+    @endisset
 
     <div class="invalid-feedback">
         @error($name){{ $message }}@enderror

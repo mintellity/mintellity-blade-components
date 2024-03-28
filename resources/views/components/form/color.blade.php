@@ -14,12 +14,18 @@
             @endisset
         </label>
     @endif
+
     <input
-        @class(["form-control form-control-color", "is-invalid" => $errors->has($name)])
+        {{ $attributes->class(["form-control form-control-color"]) }}
         id="{{ $name }}"
         name="{{ $name }}"
         type="color"
         value="{{ $value ?? '' }}"
-        {{ $attributes->whereStartsWith('wire:') }}>
+        {{ $attributes->whereStartsWith('wire:') }} />
+
+    @isset($hint)
+        <small class="form-text text-muted">{{ $hint }}</small>
+    @endisset
+
     <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
 </div>

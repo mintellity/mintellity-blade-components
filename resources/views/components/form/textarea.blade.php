@@ -1,10 +1,15 @@
 @props([
     'name',
     'label',
+    'rows' => 3,
     'required' => false,
     'disabled' => false,
+    'prepend' => null,
+    'append' => null,
+    'placeholder' => null,
+    'groupClass' => null,
 ])
-<div  {{ $attributes->class(['mb-3']) }}>
+<div @class(["mb-3", "invalid-feedback-group" => $required])>
     @if(isset($label))
         <label class="form-label" @if(isset($id)) for="{{$id}}" @else for="{{$name}}"@endif>
             @if(isset($required))
@@ -14,16 +19,25 @@
             @endif
         </label>
     @endif
-    <div class="input-group">
+
+    <div @class(["input-group" => $prepend || $append, $groupClass => $groupClass])>
         @isset($prepend){{ $prepend }}@endisset
-        <textarea class="form-control dynamic-height" name="{{$name}}"
-               type="text"
-               @if(isset($id))
-                   id="{{$id}}"
-               @else
-                   id="{{$name}}"
-               @endif rows="3">@isset($value){{ $value }}@endisset</textarea>
+        <textarea
+            {{ $attributes->class(['form-control dynamic-height']) }}
+            name="{{$name}}"
+            type="text"
+            @if(isset($id))
+               id="{{$id}}"
+            @else
+               id="{{$name}}"
+            @endif rows="{{$rows}}"
+            @if ($placeholder) placeholder="{{ $placeholder }}" @endif>@isset($value){{ $value }}@endisset</textarea>
         @isset($append){{ $append }}@endisset
     </div>
-    <div class="invalid-feedback"></div>
+
+    @isset($hint)
+        <small class="form-text text-muted">{{ $hint }}</small>
+    @endisset
+
+    <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
 </div>

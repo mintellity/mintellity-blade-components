@@ -5,12 +5,11 @@
     'checked' => false,
     'required' => false,
     'disabled' => false,
-    'readonly' => false,
-    'itemClass' => null
+    'readonly' => false
 ])
 
-<div {{ $attributes->class("mb-3")->whereDoesntStartWith('wire:') }}>
-    <div @class(["form-check form-switch", $itemClass => $itemClass])>
+<div @class(["mb-3", "invalid-feedback-group" => $required]) {{ $attributes->whereDoesntStartWith('wire:') }}>
+    <div {{ $attributes->class(["form-check form-switch"]) }}>
         <input
             @class(["form-check-input", "is-invalid" => $errors->has($name)])
             id="{{ $name }}"
@@ -33,6 +32,10 @@
             </label>
         @endif
     </div>
+
+    @isset($hint)
+        <small class="form-text text-muted">{{ $hint }}</small>
+    @endisset
 
     <div class="invalid-feedback">
         @error($name){{ $message }}@enderror

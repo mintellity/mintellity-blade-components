@@ -4,7 +4,7 @@
     'required' => false,
     'disabled' => false,
 ])
-<div {{ $attributes->class(['mb-3']) }}>
+<div @class(["mb-3", "invalid-feedback-group" => $required])>
     @if(isset($label))
         <label class="form-label" @if(isset($id)) for="{{$id}}" @else for="{{$name}}"@endif>
             @if(isset($required))
@@ -14,7 +14,8 @@
             @endif
         </label>
     @endif
-    <input class="form-control pikaday" name="{{$name}}"
+    <input
+        {{ $attributes->class(["form-control pikaday"]) }}
            type="time" @if(isset($step)) step="{{ $step }}" @endif
            @if(isset($id))
                id="{{$id}}"
@@ -22,5 +23,8 @@
                id="{{$name}}"
            @endif
            @if(isset($value)) value="{{$value}}" @endif @if($disabled) disabled @endif>
-    <div class="invalid-feedback"></div>
+    <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
+    @isset($hint)
+        <small class="form-text text-muted">{{ $hint }}</small>
+    @endisset
 </div>

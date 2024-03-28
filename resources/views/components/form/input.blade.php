@@ -13,9 +13,11 @@
     'prepend' => null,
     'append' => null,
     'step' => null,
+    'placeholder' => null,
+    'groupClass' => null
 ])
 
-<div {{ $attributes->class(['mb-3']) }}>
+<div @class(["mb-3", "invalid-feedback-group" => $required])>
     <label class="form-label" for="{{ $name }}">
         @if ($required)
             <span class="required">{{ $label }}</span>
@@ -24,13 +26,13 @@
         @endif
     </label>
 
-    <div class="input-group">
+    <div @class(["input-group" => $prepend || $append, $groupClass => $groupClass])>
         @isset($prepend)
             {{ $prepend }}
         @endisset
 
         <input
-            @class(["form-control", "is-invalid" => $errors->has($name)])
+            {{ $attributes->class(['form-control', "is-invalid" => $errors->has($name)]) }}
             id="{{ $name }}"
             name="{{ $name }}"
             type="{{ $type ?? 'text' }}"
@@ -42,15 +44,17 @@
             @if ($disabled) disabled @endif
             @if ($readonly) readonly @endif
             @if ($step) step="{{ $step }}" @endif
-            {{ $attributes->whereStartsWith('wire:') }}>
-
-        <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
+            @if ($placeholder) placeholder="{{ $placeholder }}" @endif
+            {{ $attributes->whereStartsWith('wire:') }} />
 
         @isset($append)
             {{ $append }}
         @endisset
     </div>
+
     @isset($hint)
         <small class="form-text text-muted">{{ $hint }}</small>
     @endisset
+
+    <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
 </div>

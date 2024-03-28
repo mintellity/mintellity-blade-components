@@ -7,10 +7,9 @@
     'inline' => false,
     'id' => Str::random(8),
     'value' => null,
-    'disabled' => [],
-    'itemClass' => null,
+    'disabled' => []
 ])
-<div {{ $attributes->class(['mb-3']) }}>
+<div @class(["mb-3", "invalid-feedback-group" => $required])>
     @isset($label)
         <span class="d-block form-label">
             @if ($required)
@@ -20,8 +19,9 @@
             @endif
         </span>
     @endisset
+
     @foreach($items as $key => $itemLabel)
-        <div @class(["form-check", "form-check-inline" => $inline, $itemClass => $itemClass])>
+        <div {{ $attributes->class(["form-check", "form-check-inline" => $inline]) }}>
             <input class="form-check-input" name="{{$name}}"
                    type="radio" id="{{$id}}-{{$key}}"
                    value="{{ $key }}"
@@ -32,5 +32,10 @@
             </label>
         </div>
     @endforeach
-    <div class="invalid-feedback"></div>
+
+    @isset($hint)
+        <small class="form-text text-muted">{{ $hint }}</small>
+    @endisset
+
+    <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
 </div>
