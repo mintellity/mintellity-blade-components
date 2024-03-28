@@ -3,14 +3,16 @@
     'name' => '',
     'hint' => null,
     'required' => false,
-    'disabled' => false,
     'readonly' => false,
     'options' => [],
-    'selected' => null
+    'value' => null,
+    'disabled' => [],
+    'placeholder' => null,
+    'multiple' => false,
+    'selectClass' => null
 ])
-
-<div class="fv-row mb-7 form-group">
-    <label class="fs-6 fw-bold form-label mt-3" for="{{ $name }}">
+<div {{ $attributes->class(['mb-3']) }}>
+    <label class="form-label" for="{{ $name }}">
         @if ($required)
             <span class="required">{{ $label }}</span>
         @else
@@ -19,17 +21,22 @@
     </label>
 
     <select
-        @class(["form-select form-select-solid", "is-invalid" => $errors->has($name)])
+        @class(["form-select", "is-invalid" => $errors->has($name), $selectClass => $selectClass])
         name="{{ $name }}"
         id="{{ $name }}"
         @if ($required) required @endif
         @if ($disabled || $readonly) disabled @endif
+        @if($multiple) multiple @endif
         {{ $attributes->whereStartsWith('wire:') }}>
-
-        @foreach ($options as $value => $optionLabel)
-            <option value="{{ $value }}" @if ($selected == $value) selected @endif>{{ $optionLabel }}</option>
+        @if($placeholder)
+            <option value="">{{$placeholder}}</option>
+        @endif
+        @foreach ($options as $key => $optionLabel)
+            <option value="{{ $key }}"
+                    @if($key === $value) selected @endif>
+                {{ $optionLabel }}
+            </option>
         @endforeach
-
     </select>
 
     @if($readonly && !$disabled)
@@ -42,5 +49,5 @@
     @isset($hint)
         <small class="form-text text-muted">{{ $hint }}</small>
     @endisset
-    <div class="fv-plugins-message-container invalid-feedback">@error($name){{ $message }}@enderror</div>
+    <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
 </div>
