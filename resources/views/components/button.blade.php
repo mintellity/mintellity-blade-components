@@ -1,14 +1,13 @@
 @props([
-    'name',
     'label' => null,
     'color' => null,
     'size' => null,
     'type' => null,
-    'pill' => null,
-    'disabled' => null,
     'prepend' => null,
     'append' => null,
-    'square' => null
+    'disabled' => false,
+    'pill' => false,
+    'square' => false
 ])
 <button type="button" {{ $attributes->class([
     'btn',
@@ -17,7 +16,7 @@
     'btn-' . $size  => $size,
     'rounded-pill' => $pill,
 ]) }}
-    @isset($disabled) disabled @endisset
+    @if($disabled) disabled @endif
 >
     @isset($prepend)
         {{ $prepend }}
