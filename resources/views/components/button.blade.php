@@ -1,19 +1,19 @@
 @props([
     'name',
     'label' => null,
-    'color' => 'primary',
+    'color' => null,
     'size' => null,
     'type' => null,
     'pill' => null,
     'disabled' => null,
     'prepend' => null,
     'append' => null,
-    'icon' => null
+    'square' => null
 ])
 <button type="button" {{ $attributes->class([
     'btn',
-    'btn-icon' => $icon,
-    'btn-' . ($type === 'label' ? 'label-' : ($type === 'outline' ? 'outline-' : '')) . $color,
+    'btn-icon' => $square,
+    'btn-' . ($type === 'label' ? 'label-' : ($type === 'outline' ? 'outline-' : '')) . $color => $color,
     'btn-' . $size  => $size,
     'rounded-pill' => $pill,
 ]) }}
