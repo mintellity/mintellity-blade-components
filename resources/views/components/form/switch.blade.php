@@ -6,10 +6,11 @@
     'required' => false,
     'disabled' => false,
     'readonly' => false,
-    'sync' => false
+    'sync' => false,
+    'color' => null
 ])
 <div @class(["mb-3", "invalid-feedback-group" => $required]) {{ $attributes->whereDoesntStartWith('wire:') }}>
-    <label {{ $attributes->class(["switch"]) }}>
+    <label {{ $attributes->class(["switch", "switch-" . $color => $color]) }}>
         <input
             @class(["switch-input", "is-invalid" => $errors->has($name)])
             id="{{ $name }}"

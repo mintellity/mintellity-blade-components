@@ -7,7 +7,8 @@
     'inline' => false,
     'id' => Str::random(8),
     'value' => [],
-    'disabled' => []
+    'disabled' => [],
+    'color' => null
 ])
 <div @class(["mb-3", "invalid-feedback-group" => $required])>
     @isset($label)
@@ -21,7 +22,7 @@
     @endisset
 
     @foreach($items as $key => $itemLabel)
-        <div {{ $attributes->class(["form-check", "form-check-inline" => $inline]) }}>
+        <div {{ $attributes->class(["form-check", "form-check-inline" => $inline, "form-check-" . $color => $color ]) }}>
             <input class="form-check-input" name="{{$name}}"
                    type="checkbox" id="{{$id}}-{{$key}}"
                    value="{{ $key }}"

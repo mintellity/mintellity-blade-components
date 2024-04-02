@@ -5,11 +5,12 @@
     'checked' => false,
     'required' => false,
     'disabled' => false,
-    'readonly' => false
+    'readonly' => false,
+    'color' => null
 ])
 
 <div @class(["mb-3", "invalid-feedback-group" => $required]) {{ $attributes->whereDoesntStartWith('wire:') }}>
-    <div {{ $attributes->class(["form-check form-switch"]) }}>
+    <div {{ $attributes->class(["form-check form-switch", "form-check-" . $color => $color]) }}>
         <input
             @class(["form-check-input", "is-invalid" => $errors->has($name)])
             id="{{ $name }}"
