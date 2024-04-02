@@ -3,7 +3,7 @@
 [Frest-Theme](https://demos.pixinvent.com/frest-html-admin-template/html/vertical-menu-template-bordered/ui-buttons.html)
 
 ```php
-<x-mint::button name="button" />
+<x-mint::button label="Button" />
 ```
 
 ## Attributes:
