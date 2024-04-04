@@ -1,8 +1,8 @@
 @props([
+    'hostId',
+    'id' => Str::random(8),
     'title',
     'active' => false,
-    'id' => Str::random(8),
-    'accordionId',
     'icon' => false,
     'livewireIgnore' => true,
     'noSync' => false
@@ -30,7 +30,7 @@
          aria-labelledby="heading-{{ $id }}"
          wire:ignore.self
          @if(!$noSync)
-             data-bs-parent="#{{ $accordionId }}"
+             data-bs-parent="#{{ $hostId }}"
          @endif
          @if($livewireIgnore) wire:ignore.self @endif>
         <div class="accordion-body">
