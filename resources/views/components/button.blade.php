@@ -3,8 +3,6 @@
     'color' => null,
     'size' => null,
     'type' => null,
-    'prepend' => null,
-    'append' => null,
     'disabled' => false,
     'pill' => false,
     'square' => false
@@ -18,15 +16,5 @@
 ]) }}
     @if($disabled) disabled @endif
 >
-    @isset($prepend)
-        {{ $prepend }}
-    @endisset
-
-    @isset($label)
-        {{ $label }}
-    @endisset
-
-    @isset($append)
-        {{ $append }}
-    @endisset
+    {{ $slot }}
 </button>

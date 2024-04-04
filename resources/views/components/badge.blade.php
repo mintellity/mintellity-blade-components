@@ -1,7 +1,6 @@
 @props([
     'color' => null,
     'type' => null,
-    'label' => null,
     'pill' => false,
     'square' => false,
     'badge' => null,
@@ -14,4 +13,4 @@
     collect(explode(' ', $badge))->map(function ($item) {
         return 'badge-' . $item;
     })->implode(' ') => $badge,
-]) }}>{{ $label }}</span>
+]) }}>{{ $slot }}</span>

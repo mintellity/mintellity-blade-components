@@ -3,7 +3,7 @@
 [Frest-Theme](https://demos.pixinvent.com/frest-html-admin-template/html/vertical-menu-template-bordered/ui-badges.html)
 
 ```php
-<x-mint::badge />
+<x-mint::badge>Content</x-mint::badge>
 ```
 
 ## Optional Attributes:
