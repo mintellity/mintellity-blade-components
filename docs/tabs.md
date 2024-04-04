@@ -10,18 +10,27 @@
 </x-mint::tabs.host>
 ```
 
-## Optional Host-Attributes
+## Host-Attributes
 
 | Attribute | Description     |
 |-----------|-----------------|
 | id        | ID of the host  |
 
+## Optional Host-Attributes
+
+| Attribute           | Description   |
+|---------------------|---------------|
+| nav-class           |               |
+| nav-wrapper-element | Wrap the tabs |
+| nav-wrapper-class   |               |
+
 ## Item-Attributes:
 
-| Attribute | Description                   |
-|-----------|-------------------------------|
-| host-id   | ID of the corresponding host  |
-| title     | Display title of the tab      |
+| Attribute | Description                                                  |
+|-----------|--------------------------------------------------------------|
+| host-id   | ID of the corresponding host                                 |
+| title     | Display title of the tab                                     |
+| icon      | Name of the regular Boxicons icons without the "bx" - prefix |
 
 ## Optional Item-Attributes:
 | Attribute | Description                             |

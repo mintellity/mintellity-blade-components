@@ -27,10 +27,11 @@
 
 ## Item-Attributes
 
-| Attribute | Description                  |
-|-----------|------------------------------|
-| host-id   | ID of the corresponding host |
-| title     | Display title of the item    |
+| Attribute | Description                                                 |
+|-----------|-------------------------------------------------------------|
+| host-id   | ID of the corresponding host                                |
+| title     | Display title of the item                                   |
+| icon      | Name of the regular boxicons icon without the "bx" - prefix |
 
 ## Optional Item-Attributes
 | Attribute       | Description                                                                                               |
