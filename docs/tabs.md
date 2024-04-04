@@ -4,7 +4,7 @@
 
 ```php
 <x-mint::tabs.host id="tools">
-    <x-mint::tabs.item title="Title">
+    <x-mint::tabs.item hostId="tools" title="Title">
         Content
     </x-mint::tabs.item>
 </x-mint::tabs.host>
@@ -12,15 +12,16 @@
 
 ## Optional Host-Attributes
 
-| Attribute | Description                                |
-|-----------|--------------------------------------------|
-| id        | ID of the Wrapper, random string otherwise |
+| Attribute | Description     |
+|-----------|-----------------|
+| id        | ID of the host  |
 
 ## Item-Attributes:
 
-| Attribute | Description              |
-|-----------|--------------------------|
-| title     | Display title of the tab |
+| Attribute | Description                   |
+|-----------|-------------------------------|
+| host-id   | ID of the corresponding host  |
+| title     | Display title of the tab      |
 
 ## Optional Item-Attributes:
 | Attribute | Description                             |

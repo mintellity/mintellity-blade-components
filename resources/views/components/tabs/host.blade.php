@@ -9,17 +9,17 @@
     @if($navWrapperElement)
         <{{ $navWrapperElement }} class="{{ $navWrapperClass }}">
             <div class="nav {{$navClass}}" id="{{ $id }}" role="tablist">
-                @stack('titles')
+                @stack("titles-{$id}")
             </div>
         </{{ $navWrapperElement }}>
     @else
         <div class="nav {{$navClass}}" id="{{ $id }}" role="tablist">
-            @stack('titles')
+            @stack("titles-{$id}")
         </div>
     @endif
 
     <div class="tab-content" id="{{ $id }}Content">
-        @stack('contents')
+        @stack("contents-{$id}")
     </div>
 </div>
 
