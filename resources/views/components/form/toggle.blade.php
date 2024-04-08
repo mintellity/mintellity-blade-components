@@ -29,40 +29,40 @@
 
     @if($labelPositionLeft)
         <div class="col-md-{{12 - $labelCol}}">
-    @endif
+            @endif
 
-        @foreach($items as $key => $itemLabel)
-            <div {{ $attributes->class(["form-check form-switch", "form-check-" . $color => $color]) }}>
-                <input
-                    @class(["form-check-input", "is-invalid" => $errors->has($name)])
-                    id="{{$id}}-{{$key}}"
-                    name="{{ $name }}"
-                    type="checkbox"
-                    value="{{ $key }}"
-                    @if(in_array($key, $value)) checked @endif
-                    @if(in_array($key, $disabled)) disabled @endif
-                    @disabled($readonly)
-                    {{ $attributes->whereStartsWith('wire:') }}>
-                @if($readonly)
+            @foreach($items as $key => $itemLabel)
+                <div {{ $attributes->class(["form-check form-switch", "form-check-" . $color => $color]) }}>
                     <input
-                        type="hidden"
+                        @class(["form-check-input", "is-invalid" => $errors->has($name)])
+                        id="{{$id}}-{{$key}}"
                         name="{{ $name }}"
+                        type="checkbox"
                         value="{{ $key }}"
-                        {{ $attributes->whereStartsWith('wire:') }} />
-                @endif
-                <label for="{{$id}}-{{$key}}" @class(["form-check-label", "required" => $required])>
-                    {{ $itemLabel }}
-                </label>
-            </div>
-        @endforeach
+                        @if(in_array($key, $value)) checked @endif
+                        @if(in_array($key, $disabled)) disabled @endif
+                        @disabled($readonly)
+                        {{ $attributes->whereStartsWith('wire:') }}>
+                    @if($readonly)
+                        <input
+                            type="hidden"
+                            name="{{ $name }}"
+                            value="{{ $key }}"
+                            {{ $attributes->whereStartsWith('wire:') }} />
+                    @endif
+                    <label for="{{$id}}-{{$key}}" @class(["form-check-label", "required" => $required])>
+                        {{ $itemLabel }}
+                    </label>
+                </div>
+            @endforeach
 
-        @isset($hint)
-            <small class="form-text text-muted">{{ $hint }}</small>
-        @endisset
+            @isset($hint)
+                <small class="form-text text-muted">{{ $hint }}</small>
+            @endisset
 
-        <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
+            <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
 
-    @if($labelPositionLeft)
+            @if($labelPositionLeft)
         </div>
     @endif
 </div>
