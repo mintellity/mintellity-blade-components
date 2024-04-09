@@ -15,7 +15,7 @@
 
 <div @class(["mb-3", "invalid-feedback-group" => $required, "row" => $labelPosition])>
     @isset($label)
-        <span @class(["d-block form-label", "col-md-" . $labelCol . " mb-0" => $labelPosition])>
+        <span @class(["d-block form-label", "col-md-" . $labelCol . " col-form-label" => $labelPosition])>
             @if ($required)
                 <span class="required">{{ $label }}</span>
             @else
@@ -26,28 +26,29 @@
 
     @if($labelPosition)
         <div class="col-md-{{12 - $labelCol}}">
-    @endif
+            @endif
 
-        @foreach($items as $key => $itemLabel)
-            <div {{ $attributes->class(["form-check", "form-check-inline" => $inline, "form-check-" . $color => $color ]) }}>
-                <input class="form-check-input" name="{{$name}}"
-                       type="checkbox" id="{{$id}}-{{$key}}"
-                       value="{{ $key }}"
-                       @if(in_array($key, $value)) checked @endif
-                       @if(in_array($key, $disabled)) disabled @endif>
-                <label for="{{$id}}-{{$key}}" class="form-check-label">
-                    {{ $itemLabel }}
-                </label>
-            </div>
-        @endforeach
+            @foreach($items as $key => $itemLabel)
+                <div {{ $attributes->class(["form-check", "form-check-inline" => $inline, "form-check-" . $color => $color ]) }}>
+                    <input class="form-check-input" name="{{$name}}"
+                           type="checkbox" id="{{$id}}-{{$key}}"
+                           value="{{ $key }}"
+                           @if ($required) required @endif
+                           @if(in_array($key, $value)) checked @endif
+                           @if(in_array($key, $disabled)) disabled @endif>
+                    <label for="{{$id}}-{{$key}}" class="form-check-label">
+                        {{ $itemLabel }}
+                    </label>
+                </div>
+            @endforeach
 
-        @isset($hint)
-            <small class="form-text text-muted">{{ $hint }}</small>
-        @endisset
+            @isset($hint)
+                <small class="form-text text-muted">{{ $hint }}</small>
+            @endisset
 
-        <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
+            <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
 
-    @if($labelPosition)
+            @if($labelPosition)
         </div>
     @endif
 </div>

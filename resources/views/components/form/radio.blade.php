@@ -26,28 +26,29 @@
 
     @if($labelPosition)
         <div class="col-md-{{12 - $labelCol}}">
-    @endif
+            @endif
 
-        @foreach($items as $key => $itemLabel)
-            <div {{ $attributes->class(["form-check", "form-check-inline" => $inline, "form-check-" . $color => $color]) }}>
-                <input class="form-check-input" name="{{$name}}"
-                       type="radio" id="{{$id}}-{{$key}}"
-                       value="{{ $key }}"
-                       @if($value === $key) checked @endif
-                       @if(in_array($key, $disabled)) disabled @endif>
-                <label for="{{$id}}-{{$key}}" class="form-check-label">
-                    {{ $itemLabel }}
-                </label>
-            </div>
-        @endforeach
+            @foreach($items as $key => $itemLabel)
+                <div {{ $attributes->class(["form-check", "form-check-inline" => $inline, "form-check-" . $color => $color]) }}>
+                    <input class="form-check-input" name="{{$name}}"
+                           type="radio" id="{{$id}}-{{$key}}"
+                           value="{{ $key }}"
+                           @if ($required) required @endif
+                           @if($value === $key) checked @endif
+                           @if(in_array($key, $disabled)) disabled @endif>
+                    <label for="{{$id}}-{{$key}}" class="form-check-label">
+                        {{ $itemLabel }}
+                    </label>
+                </div>
+            @endforeach
 
-        @isset($hint)
-            <small class="form-text text-muted">{{ $hint }}</small>
-        @endisset
+            @isset($hint)
+                <small class="form-text text-muted">{{ $hint }}</small>
+            @endisset
 
-        <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
+            <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
 
-    @if($labelPosition)
+            @if($labelPosition)
         </div>
     @endif
 </div>

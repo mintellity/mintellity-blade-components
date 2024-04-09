@@ -41,6 +41,7 @@
                             type="checkbox"
                         @endif
                         value="{{ $key }}"
+                        @if ($required) required @endif
                         @if(in_array($key, $value)) checked @endif
                         @if(in_array($key, $disabled)) disabled @endif
                         @disabled($readonly)

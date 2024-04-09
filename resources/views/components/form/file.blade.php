@@ -33,6 +33,7 @@
                        @else
                            id="{{$name}}"
                        @endif
+                       @if ($required) required @endif
                        @if(isset($value)) value="{{$value}}" @endif
                        @if($disabled) disabled @endif multiple>
                 @isset($append){{ $append }}@endisset
