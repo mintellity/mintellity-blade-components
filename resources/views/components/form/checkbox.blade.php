@@ -15,7 +15,7 @@
 
 <div @class(["mb-3", "invalid-feedback-group" => $required, "row" => $labelPosition])>
     @isset($label)
-        <span @class(["d-block form-label", "col-md-" . $labelCol . " col-form-label" => $labelPosition])>
+        <span @class(["d-block form-label", "col-md-" . $labelCol . " mb-0" => $labelPosition])>
             @if ($required)
                 <span class="required">{{ $label }}</span>
             @else
