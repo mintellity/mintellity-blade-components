@@ -13,13 +13,9 @@
     'labelCol' => 2
 ])
 
-@php
-    $labelPositionLeft = 'left' === $labelPosition;
-@endphp
-
-<div @class(["mb-3", "invalid-feedback-group" => $required, "row" => $labelPositionLeft])>
+<div @class(["mb-3", "invalid-feedback-group" => $required, "row" => $labelPosition])>
     @isset($label)
-        <span @class(["d-block form-label", "col-md-" . $labelCol . " mb-0" => $labelPositionLeft])>
+        <span @class(["d-block form-label", "col-md-" . $labelCol . " mb-0" => $labelPosition])>
             @if ($required)
                 <span class="required">{{ $label }}</span>
             @else
@@ -28,7 +24,7 @@
         </span>
     @endisset
 
-    @if($labelPositionLeft)
+    @if($labelPosition)
         <div class="col-md-{{12 - $labelCol}}">
     @endif
 
@@ -51,7 +47,7 @@
 
         <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
 
-    @if($labelPositionLeft)
+    @if($labelPosition)
         </div>
     @endif
 </div>

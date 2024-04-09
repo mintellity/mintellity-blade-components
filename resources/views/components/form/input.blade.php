@@ -10,6 +10,8 @@
     'required' => false,
     'disabled' => false,
     'readonly' => false,
+    'pill' => false,
+    'size' => null,
     'prepend' => null,
     'append' => null,
     'step' => null,
@@ -19,12 +21,8 @@
     'labelCol' => 2
 ])
 
-@php
-    $labelPositionLeft = 'left' === $labelPosition;
-@endphp
-
-<div @class(["mb-3", "invalid-feedback-group" => $required, "row" => $labelPositionLeft])>
-    <label @class(["form-label", "col-md-" . $labelCol . " col-form-label" => $labelPositionLeft]) for="{{ $name }}">
+<div @class(["mb-3", "invalid-feedback-group" => $required, "row" => $labelPosition])>
+    <label @class(["form-label", "col-md-" . $labelCol . " col-form-label" => $labelPosition]) for="{{ $name }}">
         @if ($required)
             <span class="required">{{ $label }}</span>
         @else
@@ -32,43 +30,43 @@
         @endif
     </label>
 
-    @if($labelPositionLeft)
+    @if($labelPosition)
         <div class="col-md-{{12 - $labelCol}}">
-    @endif
+            @endif
 
-        <div @class(["input-group" => $prepend || $append, $groupClass => $groupClass])>
-            @isset($prepend)
-                {{ $prepend }}
+            <div @class(["input-group" => $prepend || $append, $groupClass => $groupClass])>
+                @isset($prepend)
+                    {{ $prepend }}
+                @endisset
+
+                <input
+                    {{ $attributes->class(['form-control', "form-control-" . $size => $size, "is-invalid" => $errors->has($name), "rounded-pill" => $pill]) }}
+                    id="{{ $name }}"
+                    name="{{ $name }}"
+                    type="{{ $type ?? 'text' }}"
+                    @isset($value) value="{{ $value }}" @endisset
+                    @isset($accept) accept="{{ $accept }}" @endisset
+                    @isset($min) min="{{ $min }}" @endisset
+                    @isset($max) max="{{ $max }}" @endisset
+                    @if ($required) required @endif
+                    @if ($disabled) disabled @endif
+                    @if ($readonly) readonly @endif
+                    @if ($step) step="{{ $step }}" @endif
+                    @if ($placeholder) placeholder="{{ $placeholder }}" @endif
+                    {{ $attributes->whereStartsWith('wire:') }} />
+
+                @isset($append)
+                    {{ $append }}
+                @endisset
+            </div>
+
+            @isset($hint)
+                <small class="form-text text-muted">{{ $hint }}</small>
             @endisset
 
-            <input
-                {{ $attributes->class(['form-control', "is-invalid" => $errors->has($name)]) }}
-                id="{{ $name }}"
-                name="{{ $name }}"
-                type="{{ $type ?? 'text' }}"
-                @isset($value) value="{{ $value }}" @endisset
-                @isset($accept) accept="{{ $accept }}" @endisset
-                @isset($min) min="{{ $min }}" @endisset
-                @isset($max) max="{{ $max }}" @endisset
-                @if ($required) required @endif
-                @if ($disabled) disabled @endif
-                @if ($readonly) readonly @endif
-                @if ($step) step="{{ $step }}" @endif
-                @if ($placeholder) placeholder="{{ $placeholder }}" @endif
-                {{ $attributes->whereStartsWith('wire:') }} />
+            <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
 
-            @isset($append)
-                {{ $append }}
-            @endisset
-        </div>
-
-        @isset($hint)
-            <small class="form-text text-muted">{{ $hint }}</small>
-        @endisset
-
-        <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
-
-    @if($labelPositionLeft)
+            @if($labelPosition)
         </div>
     @endif
 </div>

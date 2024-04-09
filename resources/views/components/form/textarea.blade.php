@@ -12,14 +12,9 @@
     'labelCol' => '2'
 ])
 
-@php
-    $labelPositionLeft = 'left' === $labelPosition;
-    $groupCol = 12 - $labelCol;
-@endphp
-
-<div @class(["mb-3", "invalid-feedback-group" => $required, "row" => $labelPositionLeft])>
+<div @class(["mb-3", "invalid-feedback-group" => $required, "row" => $labelPosition])>
     @if(isset($label))
-        <label @class(["form-label", "col-md-" . $labelCol . " col-form-label" => $labelPositionLeft]) @if(isset($id)) for="{{$id}}" @else for="{{$name}}"@endif>
+        <label @class(["form-label", "col-md-" . $labelCol . " col-form-label" => $labelPosition]) @if(isset($id)) for="{{$id}}" @else for="{{$name}}"@endif>
             @if(isset($required))
                 <span class="required">{{$label}}</span>
             @else
@@ -28,32 +23,32 @@
         </label>
     @endif
 
-    @if($labelPositionLeft)
+    @if($labelPosition)
         <div class="col-md-{{12 - $labelCol}}">
-    @endif
+            @endif
 
-        <div @class(["input-group" => $prepend || $append, $groupClass => $groupClass])>
-            @isset($prepend){{ $prepend }}@endisset
-            <textarea
-                {{ $attributes->class(['form-control dynamic-height']) }}
-                name="{{$name}}"
-                type="text"
-                @if(isset($id))
-                   id="{{$id}}"
-                @else
-                   id="{{$name}}"
-                @endif rows="{{$rows}}"
-                @if ($placeholder) placeholder="{{ $placeholder }}" @endif>@isset($value){{ $value }}@endisset</textarea>
-            @isset($append){{ $append }}@endisset
-        </div>
+            <div @class(["input-group" => $prepend || $append, $groupClass => $groupClass])>
+                @isset($prepend){{ $prepend }}@endisset
+                <textarea
+                    {{ $attributes->class(['form-control dynamic-height']) }}
+                    name="{{$name}}"
+                    type="text"
+                    @if(isset($id))
+                        id="{{$id}}"
+                    @else
+                        id="{{$name}}"
+                    @endif rows="{{$rows}}"
+                    @if ($placeholder) placeholder="{{ $placeholder }}" @endif>@isset($value){{ $value }}@endisset</textarea>
+                @isset($append){{ $append }}@endisset
+            </div>
 
-        @isset($hint)
-            <small class="form-text text-muted">{{ $hint }}</small>
-        @endisset
+            @isset($hint)
+                <small class="form-text text-muted">{{ $hint }}</small>
+            @endisset
 
-        <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
+            <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
 
-    @if($labelPositionLeft)
+            @if($labelPosition)
         </div>
     @endif
 </div>

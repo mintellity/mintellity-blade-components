@@ -9,16 +9,13 @@
     'disabled' => [],
     'placeholder' => null,
     'multiple' => false,
+    'size' => null,
     'labelPosition' => null,
     'labelCol' => 2
 ])
 
-@php
-    $labelPositionLeft = 'left' === $labelPosition;
-@endphp
-
-<div @class(["mb-3", "invalid-feedback-group" => $required, "row" => $labelPositionLeft])>
-    <label @class(["form-label", "col-md-" . $labelCol . " col-form-label" => $labelPositionLeft]) for="{{ $name }}">
+<div @class(["mb-3", "invalid-feedback-group" => $required, "row" => $labelPosition])>
+    <label @class(["form-label", "col-md-" . $labelCol . " col-form-label" => $labelPosition]) for="{{ $name }}">
         @if ($required)
             <span class="required">{{ $label }}</span>
         @else
@@ -26,12 +23,12 @@
         @endif
     </label>
 
-    @if($labelPositionLeft)
+    @if($labelPosition)
         <div class="col-md-{{12 - $labelCol}}">
     @endif
 
         <select
-            {{ $attributes->class(['form-select', "is-invalid" => $errors->has($name)]) }}
+            {{ $attributes->class(['form-select', "form-select-" . $size => $size, "is-invalid" => $errors->has($name)]) }}
             name="{{ $name }}"
             id="{{ $name }}"
             @if ($required) required @endif
@@ -63,7 +60,7 @@
 
         <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
 
-    @if($labelPositionLeft)
+    @if($labelPosition)
         </div>
     @endif
 </div>

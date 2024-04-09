@@ -15,20 +15,28 @@
 
 ## Optional Attributes
 
-| Attribute | Description |
-|-----------|-------------|
-| accept    |             |
-| disabled  |             |
-| readonly  |             |
-| hint      |             |
-| Label     |             |
-| max       |             |
-| min       |             |
-| required  |             |
-| step      |             |
-| type      |             |
-| value     |             |
+| Attribute      | Description                                                                          |
+|----------------|--------------------------------------------------------------------------------------|
+| accept         |                                                                                      |
+| disabled       |                                                                                      |
+| readonly       |                                                                                      |
+| hint           |                                                                                      |
+| Label          |                                                                                      |
+| max            |                                                                                      |
+| min            |                                                                                      |
+| required       |                                                                                      |
+| step           |                                                                                      |
+| type           |                                                                                      |
+| value          |                                                                                      |
+| label-position | `left` places the label to the left side of the input                                |
+| label-col      | Valid numbers adjust the label width in addition to 'label-position', `2` by default |
 
+#### Basic Input Optional Attributes
+
+| Attribute | Description                               |
+|-----------|-------------------------------------------|
+| size      | `sm` or `lg` adjust the size of the input |
+| pill      | Fully rounded corners. `FALSE` by default |
 
 ## Other Input types
 
@@ -40,27 +48,43 @@
 <x-mint::form.checkbox name="checkbox" :items="['value1' => 'Name 1', 'value2' => 'Name 2']" />
 ```
 
+#### Checkbox Optional Attributes
+
+| Attribute | Description                            |
+|-----------|----------------------------------------|
+| color     | `primary` or other valid color name    |
+| inline    | Items side by side. `FALSE` by default |
+
+### Radio
+[Bootstrap-Components](https://getbootstrap.com/docs/5.3/forms/checks-radios/#radios)
+[Frest-Theme](https://demos.pixinvent.com/frest-html-admin-template/html/vertical-menu-template-bordered/forms-basic-inputs.html#defaultRadio1)
+
+```php
+<x-mint::form.radio name="name" :items="['value1' => 'Option 1', 'value2' => 'Option 2']" />
+```
+
+#### Radio Optional Attributes
+
+| Attribute | Description                            |
+|-----------|----------------------------------------|
+| color     | `primary` or other valid color name    |
+| inline    | Items side by side. `FALSE` by default |
+
 ### Toggle
 [Bootstrap-Components](https://getbootstrap.com/docs/5.3/forms/checks-radios/#switches)
 [Frest-Theme](https://demos.pixinvent.com/frest-html-admin-template/html/vertical-menu-template-bordered/forms-basic-inputs.html#flexSwitchCheckDefault)
 
 ```php
-<x-mint::form.toggle name="name" />
+<x-mint::form.toggle name="name" :items="['value1' => 'Name 1']" />
 ```
 
-### Switch
-[Frest-Theme](https://demos.pixinvent.com/frest-html-admin-template/html/vertical-menu-template-bordered/forms-switches.html)
+#### Toggle Optional Attributes
 
-```php
-<x-mint::form.switch name="name" />
-```
-#### Synced Switches
-```php
-<div class="switches-stacked">
-    <x-mint::form.switch name="name" sync />
-    <x-mint::form.switch name="name" sync />
-</div>
-```
+| Attribute | Description                                          |
+|-----------|------------------------------------------------------|
+| color     | `primary` or other valid color name                  |
+| inline    | Items side by side. `FALSE` by default               |
+| sync      | Uncheck if other item is checked. `FALSE` by default |
 
 ### Select
 [Bootstrap-Components](https://getbootstrap.com/docs/5.3/forms/select/)
@@ -70,13 +94,11 @@
 <x-mint::form.select name="name" :options="['value' => 'Name', 'value2' => 'Name2']" />
 ```
 
-### Radio
-[Bootstrap-Components](https://getbootstrap.com/docs/5.3/forms/checks-radios/#radios)
-[Frest-Theme](https://demos.pixinvent.com/frest-html-admin-template/html/vertical-menu-template-bordered/forms-basic-inputs.html#defaultRadio1)
+#### Select Optional Attributes
 
-```php
-<x-mint::form.radio name="name" :items="['value1' => 'Option 1', 'value2' => 'Option 2']" />
-```
+| Attribute | Description                                |
+|-----------|--------------------------------------------|
+| size      | `sm` or `lg` adjust the size of the select |
 
 ### File
 [Bootstrap-Components](https://getbootstrap.com/docs/5.3/forms/form-control/#file-input)

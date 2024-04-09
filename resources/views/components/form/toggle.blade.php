@@ -7,18 +7,16 @@
     'disabled' => [],
     'required' => false,
     'readonly' => false,
+    'sync' => false,
+    'inline' => false,
     'color' => null,
     'labelPosition' => null,
     'labelCol' => 2
 ])
 
-@php
-    $labelPositionLeft = 'left' === $labelPosition;
-@endphp
-
-<div @class(["mb-3", "invalid-feedback-group" => $required, "row" => $labelPositionLeft]) {{ $attributes->whereDoesntStartWith('wire:') }}>
+<div @class(["mb-3", "invalid-feedback-group" => $required, "row" => $labelPosition]) {{ $attributes->whereDoesntStartWith('wire:') }}>
     @isset($label)
-        <span @class(["d-block form-label", "col-md-" . $labelCol . " mb-0" => $labelPositionLeft])>
+        <span @class(["d-block form-label", "col-md-" . $labelCol . " mb-0" => $labelPosition])>
             @if ($required)
                 <span class="required">{{ $label }}</span>
             @else
@@ -27,17 +25,21 @@
         </span>
     @endisset
 
-    @if($labelPositionLeft)
+    @if($labelPosition)
         <div class="col-md-{{12 - $labelCol}}">
             @endif
 
             @foreach($items as $key => $itemLabel)
-                <div {{ $attributes->class(["form-check form-switch", "form-check-" . $color => $color]) }}>
+                <div {{ $attributes->class(["form-check form-switch", "form-check-inline" => $inline, "form-check-" . $color => $color]) }}>
                     <input
                         @class(["form-check-input", "is-invalid" => $errors->has($name)])
                         id="{{$id}}-{{$key}}"
                         name="{{ $name }}"
-                        type="checkbox"
+                        @if($sync)
+                            type="radio"
+                        @else
+                            type="checkbox"
+                        @endif
                         value="{{ $key }}"
                         @if(in_array($key, $value)) checked @endif
                         @if(in_array($key, $disabled)) disabled @endif
@@ -62,7 +64,7 @@
 
             <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
 
-            @if($labelPositionLeft)
+            @if($labelPosition)
         </div>
     @endif
 </div>
