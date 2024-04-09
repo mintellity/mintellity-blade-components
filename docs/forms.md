@@ -28,6 +28,7 @@
 | step           |                                                                                      |
 | type           |                                                                                      |
 | value          |                                                                                      |
+| placeholder    |                                                                                      |
 | label-position | `left` places the label to the left side of the input                                |
 | label-col      | Valid numbers adjust the label width in addition to 'label-position', `2` by default |
 
@@ -99,6 +100,7 @@
 | Attribute | Description                                |
 |-----------|--------------------------------------------|
 | size      | `sm` or `lg` adjust the size of the select |
+| multiple  | Expanded Select Options                    |
 
 ### File
 [Bootstrap-Components](https://getbootstrap.com/docs/5.3/forms/form-control/#file-input)
