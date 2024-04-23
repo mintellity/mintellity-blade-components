@@ -1,3 +1,8 @@
+/**
+ * This script is used to submit forms via AJAX.
+ *
+ * To use this script, add the class "ajax-form" to the form element.
+ */
 document.body.addEventListener('submit', async function (e) {
     let form = e.target;
 
@@ -6,6 +11,7 @@ document.body.addEventListener('submit', async function (e) {
 
     e.preventDefault();
 
+    // Set button label to loading state, remember original label
     let submitButton = form.querySelector('button[type=submit]');
     let originalButtonLabel = null;
 
@@ -19,8 +25,9 @@ document.body.addEventListener('submit', async function (e) {
     // Remove all error messages
     form.querySelectorAll('.form-control, .form-check-input').forEach(el => el.classList.remove('is-invalid'));
 
+    // Collect form data
     const method = form.getAttribute('method') || "post";
-    const action = form.getAttribute('action');
+    const action = form.getAttribute('action') || window.location.href;
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     const formData = new FormData(form);
 
@@ -40,11 +47,13 @@ document.body.addEventListener('submit', async function (e) {
                 return response.json()
         })
         .then((data) => {
+            // Redirect user if redirect key is present
             if (data.redirect) {
                 window.location.replace(data.redirect);
                 return Promise.resolve();
             }
 
+            // Set field errors if there are any
             let errors = data.errors;
 
             if (!errors)
@@ -59,20 +68,25 @@ document.body.addEventListener('submit', async function (e) {
         })
         .catch((reason) => console.warn(reason))
         .finally(() => {
+            // Reset button state
             submitButton.removeAttribute('disabled');
             submitButton.value = originalButtonLabel;
             submitButton.textContent = originalButtonLabel;
         });
 
+    /**
+     * Sets a field error message
+     *
+     * @param field
+     * @param message
+     */
     function setFieldError(field, message) {
         let inputField = document.getElementById(field);
+        inputField?.classList.add('is-invalid');
 
-        if (inputField.type === 'checkbox') {
-            inputField.closest('.form-check').querySelector('.form-check-input').classList.add('is-invalid');
-            inputField.closest('.form-check').querySelector('.invalid-feedback').textContent = message;
-        } else {
-            inputField.closest('.form-group').querySelector('.form-control').classList.add('is-invalid');
-            inputField.closest('.form-group').querySelector('.invalid-feedback').textContent = message;
-        }
+        let invalidFeedback = inputField?.closest('.form-group')?.querySelector('.invalid-feedback');
+
+        if (invalidFeedback)
+            invalidFeedback.textContent = message;
     }
 });
