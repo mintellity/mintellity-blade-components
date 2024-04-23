@@ -1,6 +1,7 @@
 @props([
     'name',
     'label',
+    'id' => null,
     'required' => false,
     'disabled' => false,
 ])
@@ -14,13 +15,14 @@
             @endif
         </label>
     @endif
-    <input class="form-control pikaday" name="{{$name}}"
-           type="text"
-           @if(isset($id))
-               id="{{$id}}"
-           @else
-               id="{{$name}}"
-           @endif
-           @if(isset($value)) value="{{$value}}" @endif @if($disabled) disabled @endif>
+
+    <input
+        class="form-control pikaday"
+        id="{{ $id ?? $name }}"
+        name="{{$name}}"
+        type="text"
+        @if(isset($value)) value="{{$value}}"
+        @endif @if($disabled) disabled @endif>
+
     <div class="invalid-feedback"></div>
 </div>

@@ -1,6 +1,7 @@
 @props([
     'label',
-    'name' => '',
+    'name',
+    'id' => null,
     'hint' => null,
     'required' => false,
     'readonly' => false,
@@ -22,8 +23,8 @@
 
     <select
         @class(["form-select", "is-invalid" => $errors->has($name), $selectClass => $selectClass])
+        id="{{ $id ?? $name }}"
         name="{{ $name }}"
-        id="{{ $name }}"
         @if ($required) required @endif
         @if ($disabled || $readonly) disabled @endif
         @if($multiple) multiple @endif

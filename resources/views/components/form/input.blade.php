@@ -1,5 +1,6 @@
 @props([
     'name',
+    'id' => null,
     'label' => '',
     'hint' => null,
     'type' => null,
@@ -32,7 +33,7 @@
         <input
             @class(["form-control", "is-invalid" => $errors->has($name)])
             id="{{ $name }}"
-            name="{{ $name }}"
+            name="{{ $id ?? $name }}"
             type="{{ $type ?? 'text' }}"
             @isset($value) value="{{ $value }}" @endisset
             @isset($accept) accept="{{ $accept }}" @endisset

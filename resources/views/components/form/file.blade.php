@@ -1,6 +1,7 @@
 @props([
-    'name',
     'label',
+    'name',
+    'id' => null,
     'required' => false,
     'disabled' => false,
 ])
@@ -15,15 +16,13 @@
         </label>
     @endif
     <div class="input-group">
-        <input class="form-control" name="{{$name}}"
-               type="file"
-               @if(isset($id))
-                   id="{{$id}}"
-               @else
-                   id="{{$name}}"
-               @endif
-               @if(isset($value)) value="{{$value}}" @endif
-               @if($disabled) disabled @endif multiple>
+        <input
+            class="form-control"
+            id="{{ $id ?? $name }}"
+            name="{{$name}}"
+            type="file"
+            @if($disabled) disabled @endif multiple>
     </div>
+
     <div class="invalid-feedback"></div>
 </div>

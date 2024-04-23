@@ -1,6 +1,7 @@
 @props([
-    'name',
     'label',
+    'name',
+    'id' => null,
     'value' => 1,
     'checked' => false,
     'required' => false,
@@ -13,7 +14,7 @@
     <label @class(["switch", $itemClass => $itemClass])>
         <input
             @class(["switch-input", "is-invalid" => $errors->has($name)])
-            id="{{ $name }}"
+            id="{{ $id ?? $name }}"
             name="{{ $name }}"
             @if($sync)
                 type="radio"

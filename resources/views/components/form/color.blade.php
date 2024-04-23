@@ -1,6 +1,7 @@
 @props([
     'name',
     'label',
+    'id' => null,
     'required' => false,
     'disabled' => false,
 ])
@@ -14,12 +15,14 @@
             @endisset
         </label>
     @endif
+
     <input
         @class(["form-control form-control-color", "is-invalid" => $errors->has($name)])
-        id="{{ $name }}"
+        id="{{ $id ?? $name }}"
         name="{{ $name }}"
         type="color"
         value="{{ $value ?? '' }}"
         {{ $attributes->whereStartsWith('wire:') }}>
+
     <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
 </div>
