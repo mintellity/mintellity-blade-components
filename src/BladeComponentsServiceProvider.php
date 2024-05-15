@@ -2,7 +2,7 @@
 
 namespace Mintellity\BladeComponents;
 
-use Illuminate\Support\Facades\Blade;
+use Mintellity\BladeComponents\Providers\BladeServiceProvider;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -20,9 +20,10 @@ class BladeComponentsServiceProvider extends PackageServiceProvider
             ->hasViews('mint');
     }
 
-    public function bootingPackage()
+    public function registeringPackage(): void
     {
-        //        Blade::componentNamespace('Nightshade\\Views\\Components', 'nightshade');
-        //        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'bs');
+        parent::registeringPackage();
+
+        $this->app->register(BladeServiceProvider::class);
     }
 }
