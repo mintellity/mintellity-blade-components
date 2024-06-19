@@ -25,7 +25,7 @@
             <input
                 {{ $attributes->class(["form-control pikaday"]) }}
                 name="{{$name}}"
-                type="text"
+                type="date"
                 @if(isset($id))
                     id="{{$id}}"
                 @else
