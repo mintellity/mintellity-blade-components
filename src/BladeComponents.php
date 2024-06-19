@@ -2,6 +2,4 @@
 
 namespace Mintellity\BladeComponents;
 
-class BladeComponents
-{
-}
+class BladeComponents {}
