@@ -5,6 +5,8 @@
     'type' => 'text',
     'required' => false,
     'hint' => null,
+    'prepend' => null,
+    'append' => null,
     'inlineLabels' => config('blade-components.forms.inline-labels', false),
     'inlineLabelWidth' => config('blade-components.forms.inline-label-width', '2'),
 ])
@@ -17,8 +19,8 @@
 
 <div {{ $groupAttributes->class(["mb-3", "invalid-feedback-group", "row" => $inlineLabels]) }}>
     <label
-        {{ $labelAttributes->class(["form-label", "col-md-$inlineLabelWidth" => $inlineLabels])->except('for') }}
-        for="{{ $name }}">
+        {{ $labelAttributes->class(["form-label", "col-md-$inlineLabelWidth col-form-label" => $inlineLabels])->except('for') }}
+        for="{{ $id ?? $name }}">
         @if ($required)
             <span class="required">{{ $label }}</span>
         @else
@@ -29,23 +31,32 @@
     @if($inlineLabels)
         <div class="col-md-{{ 12 - $inlineLabelWidth }}">@endif
 
-            <div @class(["form-check form-switch"])>
+            <div class="input-group">
+                @isset($prepend)
+                    {{ $prepend }}
+                @endisset
+
                 <input
-                    id="{{ $name }}"
-                    name="{{ $id ?? $name }}"
+                    id="{{ $id ?? $name }}"
+                    name="{{ $name }}"
                     type="{{ $type }}"
                     @if($required) required @endif
-                    {{ $inputAttributes->class(["form-check-input", "is-invalid" => $errors->has($name)]) }}>
+                    {{ $inputAttributes->class(["form-control", "is-invalid" => $errors->has($name)])->except(['id', 'name', 'type', 'required']) }}>
 
-                <div class="invalid-feedback">
-                    @error($name){{ $message }}@enderror
-                </div>
+
+                @isset($append)
+                    {{ $append }}
+                @endisset
+            </div>
+
+            @isset($hint)
+                <small class="form-text text-muted">{{ $hint }}</small>
+            @endisset
+
+            <div class="invalid-feedback">
+                @error($name){{ $message }}@enderror
             </div>
 
             @if($inlineLabels)</div>
     @endif
-
-    @isset($hint)
-        <small class="form-text text-muted">{{ $hint }}</small>
-    @endisset
 </div>

@@ -17,6 +17,7 @@ class BladeComponentsServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('blade-components')
+            ->hasConfigFile('blade-components')
             ->hasViews('mint');
     }
 

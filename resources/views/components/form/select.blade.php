@@ -1,19 +1,27 @@
 @props([
-    'label',
     'name',
     'id' => null,
+    'label' => '',
     'hint' => null,
     'required' => false,
-    'readonly' => false,
     'options' => [],
-    'value' => null,
+    'selected' => null,
     'disabled' => [],
-    'placeholder' => null,
-    'multiple' => false,
-    'selectClass' => null
+    'placeholder' => 'Auswählen',
+    'inlineLabels' => config('blade-components.forms.inline-labels', false),
+    'inlineLabelWidth' => config('blade-components.forms.inline-label-width', '2'),
 ])
-<div {{ $attributes->class(['mb-3']) }}>
-    <label class="form-label" for="{{ $name }}">
+
+@php
+    $labelAttributes = $attributes->prefixed('label');
+    $groupAttributes = $attributes->prefixed('group');
+    $inputAttributes = $attributes->notPrefixed(['label', 'group']);
+@endphp
+
+<div {{ $groupAttributes->class(["mb-3", "invalid-feedback-group", "row" => $inlineLabels]) }}>
+    <label
+        {{ $labelAttributes->class(["form-label", "col-md-$inlineLabelWidth col-form-label" => $inlineLabels])->except('for') }}
+        for="{{ $name }}">
         @if ($required)
             <span class="required">{{ $label }}</span>
         @else
@@ -21,34 +29,46 @@
         @endif
     </label>
 
-    <select
-        @class(["form-select", "is-invalid" => $errors->has($name), $selectClass => $selectClass])
-        id="{{ $id ?? $name }}"
-        name="{{ $name }}"
-        @if ($required) required @endif
-        @if ($disabled || $readonly) disabled @endif
-        @if($multiple) multiple @endif
-        {{ $attributes->whereStartsWith('wire:') }}>
-        @if($placeholder)
-            <option value="">{{$placeholder}}</option>
-        @endif
-        @foreach ($options as $key => $optionLabel)
-            <option value="{{ $key }}"
-                    @if($key === $value) selected @endif>
-                {{ $optionLabel }}
-            </option>
-        @endforeach
-    </select>
+    @if($inlineLabels)
+        <div class="col-md-{{12 - $inlineLabelWidth}}">
+            @endif
 
-    @if($readonly && !$disabled)
-        <input
-            type="hidden"
-            name="{{ $name }}"
-            {{ $attributes->whereStartsWith('wire:') }} />
+            <select
+                id="{{ $id ?? $name }}"
+                name="{{ $name }}"
+                @if ($required) required @endif
+                {{ $inputAttributes->class(["form-select", "is-invalid" => $errors->has($name)])->except(['id', 'name', 'required']) }}>
+
+                @if($placeholder !== false)
+                    <option value="" @if ($selected === null) selected @endif>
+                        {{ $placeholder }}
+                    </option>
+                @endif
+
+                @foreach ($options as $value => $optionLabel)
+                    @if(is_iterable($optionLabel))
+                        <optgroup label="{{ $value }}">
+                            @foreach ($optionLabel as $optgroupValue => $optgroupLabel)
+                                <option value="{{ $optgroupValue }}" @if ($selected !== null && $selected == $optgroupValue) selected @endif>
+                                    {{ $optgroupLabel }}
+                                </option>
+                            @endforeach
+                        </optgroup>
+                    @else
+                        <option value="{{ $value }}" @if ($selected !== null && $selected == $value) selected @endif>
+                            {{ $optionLabel }}
+                        </option>
+                    @endif
+                @endforeach
+            </select>
+
+            @isset($hint)
+                <small class="form-text text-muted">{{ $hint }}</small>
+            @endisset
+
+            <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
+
+            @if($inlineLabels)
+        </div>
     @endif
-
-    @isset($hint)
-        <small class="form-text text-muted">{{ $hint }}</small>
-    @endisset
-    <div class="invalid-feedback">@error($name){{ $message }}@enderror</div>
 </div>
