@@ -36,6 +36,9 @@ require('../../node_modules/mintellity-blade-components/resources/js/index');
 The following components are available in this package:
 
 - [Accordion](docs/accordion.md)
+- [Badges](docs/badges.md)
+- [Buttons](docs/buttons.md)
+- [Dropdown](docs/dropdown.md)
 - [Form-Inputs](docs/forms.md)
 - [Icon](docs/icon.md)
 - [Modal](docs/modal.md)
