@@ -84,7 +84,7 @@ document.body.addEventListener('submit', async function (e) {
         let inputField = document.getElementById(field);
         inputField?.classList.add('is-invalid');
 
-        let invalidFeedback = inputField?.closest('.form-group')?.querySelector('.invalid-feedback');
+        let invalidFeedback = inputField?.closest('.invalid-feedback-group')?.querySelector('.invalid-feedback');
 
         if (invalidFeedback)
             invalidFeedback.textContent = message;
