@@ -1,1 +1,1 @@
-<i {{ $attributes->merge(['class' => 'bx bx-' . $name]) }}></i>
+<i {{ $attributes->merge(['class' => 'fa fa-' . $name]) }}></i>
