@@ -2,7 +2,9 @@
   "name": "mintellity-blade-components",
   "exports": {
     "./resources/js": "./resources/js",
-    "./package.json": "./package.json"
-    "./datepicker": "./resources/js/datepicker.js"
+    "./package.json": "./package.json",
+    "./async-form": "./resources/js/async-form.js",
+    "./datepicker": "./resources/js/datepicker.js",
+    "./textarea": "./resources/js/textarea.js"
   }
 }
