@@ -27,10 +27,10 @@ class BladeServiceProvider extends ServiceProvider
          * <div class="bg-red-500"> ... </div>
          */
         ComponentAttributeBag::macro('prefixed', function (string|iterable $prefix) {
-            $prefixes = collect($prefix)->map(fn($prefix) => Str::finish($prefix, ':'));
+            $prefixes = collect($prefix)->map(fn ($prefix) => Str::finish($prefix, ':'));
 
             return $this->whereStartsWith($prefixes)->mapWithKeys(function ($value, $key) use ($prefixes) {
-                $prefix = $prefixes->first(fn($prefix) => Str::startsWith($key, $prefix));
+                $prefix = $prefixes->first(fn ($prefix) => Str::startsWith($key, $prefix));
 
                 return [Str::after($key, $prefix) => $value];
             });
@@ -40,7 +40,7 @@ class BladeServiceProvider extends ServiceProvider
          * Macro for component attributes to filter by prefix.
          */
         ComponentAttributeBag::macro('notPrefixed', function (string|iterable $prefix) {
-            $prefixes = collect($prefix)->map(fn($prefix) => Str::finish($prefix, ':'));
+            $prefixes = collect($prefix)->map(fn ($prefix) => Str::finish($prefix, ':'));
 
             return $this->whereDoesntStartWith($prefixes);
         });

@@ -3,6 +3,6 @@
 return [
     'forms' => [
         'inline-labels' => false,
-        'inline-labels-width' => '2'
-    ]
+        'inline-labels-width' => '2',
+    ],
 ];
