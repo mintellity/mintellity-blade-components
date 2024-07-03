@@ -1,6 +1,6 @@
 # Asynchronous Form-Validation
 
-Requires [async-form.js](../resources/js/async-form.js).
+Requires [async-form.js](../resources/js/async-form.js) and [forms.css](../resources/css/forms.css).
 
 To use asynchronous form-validation ("Ajax-Form"), you need to add the `AsyncFormRedirectMiddleware` to
 the `App/Http/Kernel.php`-file:
@@ -22,6 +22,21 @@ Then you can use the form component to asynchronously validate the form and disp
     <x-mint::form.input name="name" label="Name"/>
     ...
 </x-mint::form>
+```
+
+## Inline labels
+
+To use inline labels, change the config value `form.inline-labels` to `true`. You can also change the width of the labels:
+
+```php
+// config/blade-components.php
+
+return [
+    'form' => [
+        'inline-labels' => true,
+        'inline-label-width' => '2' // col-md-2
+    ]
+];
 ```
 
 # Form-Inputs
