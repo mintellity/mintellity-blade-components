@@ -3,11 +3,11 @@
 [Frest-Theme](https://demos.pixinvent.com/frest-html-admin-template/html/vertical-menu-template-bordered/ui-tabs-pills.html)
 
 ```bladehtml
-<x-mint::tabs.host id="tools">
+<x-mint::tabs id="tools">
     <x-mint::tabs.item title="Title">
         Content
     </x-mint::tabs.item>
-</x-mint::tabs.host>
+</x-mint::tabs>
 ```
 
 ## Optional Host-Attributes

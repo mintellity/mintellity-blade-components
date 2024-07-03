@@ -3,20 +3,20 @@
 [Frest-Theme](https://demos.pixinvent.com/frest-html-admin-template/html/vertical-menu-template-bordered/ui-accordion.html)
 
 ```bladehtml
-<x-mint::accordion.host id="tools">
-    <x-mint::accordion.item title="Title" accordion-id="tools">
+<x-mint::accordion id="tools">
+    <x-mint::accordion.item host-id="tools" title="Title">
         Content
     </x-mint::accordion.item>
-</x-mint::accordion.host>
+</x-mint::accordion>
 ```
 
 ### Always Open Panel
 ```bladehtml
-<x-mint::accordion.host id="tools">
-    <x-mint::accordion.item title="Title" accordion-id="tools" active no-sync>
+<x-mint::accordion id="tools">
+    <x-mint::accordion.item host-id="tools" title="Title" active no-sync>
         Content
     </x-mint::accordion.item>
-</x-mint::accordion.host>
+</x-mint::accordion>
 ```
 
 ## Host-Attributes
@@ -27,14 +27,16 @@
 
 ## Item-Attributes
 
-| Attribute    | Description                  |
-|--------------|------------------------------|
-| accordion-id | ID of the corresponding host |
-| title        | Display title of the item    |
+| Attribute | Description                                                 |
+|-----------|-------------------------------------------------------------|
+| host-id   | ID of the corresponding host                                |
+| title     | Display title of the item                                   |
+| icon      | Name of the regular boxicons icon without the "bx" - prefix |
 
 ## Optional Item-Attributes
-| Attribute       | Description                                                                                                |
-|-----------------|------------------------------------------------------------------------------------------------------------|
-| id              | ID of the item, random string otherwise                                                                    |
-| active          | If the item is expanded by default                                                                         |
-| livewire-ignore | Adds `wire:ignore.self` to the item title and content to prevent Livewire from resetting the active state  |
+| Attribute       | Description                                                                                               |
+|-----------------|-----------------------------------------------------------------------------------------------------------|
+| id              | ID of the item, random string otherwise                                                                   |
+| active          | If the item is expanded by default                                                                        |
+| no-sync         | Keep open when other items are opened                                                                     |
+| livewire-ignore | Adds `wire:ignore.self` to the item title and content to prevent Livewire from resetting the active state |
