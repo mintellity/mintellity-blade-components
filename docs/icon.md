@@ -1,7 +1,7 @@
 # Icon
 [Font-Awesome-Icons](https://fontawesome.com/icons)
 
-```php
+```bladehtml
 <x-mint::icon name="arrow-left" class="text-primary" />
 ```
 

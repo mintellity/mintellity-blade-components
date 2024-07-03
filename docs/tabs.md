@@ -2,7 +2,7 @@
 [Bootstrap-Component](https://getbootstrap.com/docs/5.3/components/navs-tabs/#javascript-behavior)
 [Frest-Theme](https://demos.pixinvent.com/frest-html-admin-template/html/vertical-menu-template-bordered/ui-tabs-pills.html)
 
-```php
+```bladehtml
 <x-mint::tabs.host id="tools">
     <x-mint::tabs.item title="Title">
         Content

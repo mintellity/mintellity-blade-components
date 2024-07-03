@@ -1,7 +1,7 @@
 # Modal
 [Bootstrap-Component](https://getbootstrap.com/docs/5.3/components/modal/)
 
-```php
+```bladehtml
 <x-mint::modal id="tools">
     <x-mint::modal.header>
         Benutzer bearbeiten

@@ -2,7 +2,7 @@
 [Bootstrap-Component](https://getbootstrap.com/docs/5.3/components/accordion/)
 [Frest-Theme](https://demos.pixinvent.com/frest-html-admin-template/html/vertical-menu-template-bordered/ui-accordion.html)
 
-```php
+```bladehtml
 <x-mint::accordion.host id="tools">
     <x-mint::accordion.item title="Title" accordion-id="tools">
         Content
@@ -11,7 +11,7 @@
 ```
 
 ### Always Open Panel
-```php
+```bladehtml
 <x-mint::accordion.host id="tools">
     <x-mint::accordion.item title="Title" accordion-id="tools" active no-sync>
         Content

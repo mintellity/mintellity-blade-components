@@ -2,7 +2,7 @@
 [Bootstrap-Component](https://getbootstrap.com/docs/5.3/components/card/)
 [Frest-Theme](https://demos.pixinvent.com/frest-html-admin-template/html/vertical-menu-template-bordered/cards-basic.html)
 
-```html
+```bladehtml
 <x-mint::card.card>
     <x-mint::card.header>
         <div class="card-title">
