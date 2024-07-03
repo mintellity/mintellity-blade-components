@@ -19,7 +19,7 @@
     $groupAttributes = $attributes->notPrefixed(['label', 'item', 'item-group', 'item-label']);
 @endphp
 
-<div {{ $groupAttributes->class("mb-3") }}>
+<div {{ $groupAttributes->class(["mb-3", "invalid-feedback-group", "row" => $inlineLabels]) }}>
     @isset($label)
         <span {{ $labelAttributes->class(["d-block form-label", "col-md-$inlineLabelWidth mb-0" => $inlineLabels]) }}>
             @if ($required)
