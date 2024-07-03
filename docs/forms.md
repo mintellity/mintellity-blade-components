@@ -153,15 +153,3 @@ Requires [datepicker.js](../resources/js/datepicker.js) and [datepicker.css](../
 <x-mint::form.date
     name="name"/>
 ```
-
-### Time
-
-Using [Pikaday](https://github.com/Pikaday/Pikaday)
-Requires [datepicker.js](../resources/js/datepicker.js) and [datepicker.css](../resources/css/datepicker.css).
-
-```bladehtml
-
-<x-mint::form.time
-    name="name"/>
-```
-
