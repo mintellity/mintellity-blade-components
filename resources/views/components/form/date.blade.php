@@ -1,1 +1,1 @@
-<x-mint::form.input {{ $attributes->class('pikaday')->merge(['type' => 'date']) }} />
+@include('mint::components.form.input.index', ['attributes' => $attributes->class('pikaday')])
