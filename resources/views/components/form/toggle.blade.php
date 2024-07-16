@@ -2,7 +2,6 @@
     'name',
     'id' => null,
     'label' => '',
-    'type' => 'text',
     'required' => false,
     'hint' => null,
     'inlineLabels' => config('blade-components.forms.inline-labels', false),
@@ -33,9 +32,9 @@
                 <input
                     id="{{ $name }}"
                     name="{{ $id ?? $name }}"
-                    type="{{ $type }}"
+                    type="checkbox"
                     @if($required) required @endif
-                    {{ $inputAttributes->class(["form-check-input", "is-invalid" => $errors->has($name)]) }}>
+                    {{ $inputAttributes->class(["form-check-input", "is-invalid" => $errors->has($name)])->except('type') }}>
 
                 <div class="invalid-feedback">
                     @error($name){{ $message }}@enderror
