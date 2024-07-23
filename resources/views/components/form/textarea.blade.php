@@ -2,6 +2,7 @@
     'name',
     'id' => null,
     'label' => '',
+    'value' => null,
     'required' => false,
     'disabled' => false,
     'inlineLabels' => config('blade-components.forms.inline-labels', false),
