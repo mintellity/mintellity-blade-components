@@ -87,6 +87,6 @@ document.body.addEventListener('submit', async function (e) {
         let invalidFeedback = inputField?.closest('.invalid-feedback-group')?.querySelector('.invalid-feedback');
 
         if (invalidFeedback)
-            invalidFeedback.textContent = message;
+            invalidFeedback.innerHtml = message;
     }
 });
