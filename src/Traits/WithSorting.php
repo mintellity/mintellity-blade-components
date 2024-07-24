@@ -44,7 +44,7 @@ trait WithSorting
      */
     public function renderingWithSorting(): void
     {
-        if (!$this->isValidSortBy($this->sortBy)) {
+        if (! $this->isValidSortBy($this->sortBy)) {
             $this->resetSort();
         }
     }
@@ -65,7 +65,7 @@ trait WithSorting
      */
     protected function isValidSortBy(string $field): bool
     {
-        if (!property_exists($this, 'sortableColumns')) {
+        if (! property_exists($this, 'sortableColumns')) {
             return true;
         }
 
