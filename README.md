@@ -42,6 +42,7 @@ The following components are available in this package:
 - [Form-Inputs](docs/forms.md)
 - [Icon](docs/icon.md)
 - [Modal](docs/modal.md)
+- [Tables](docs/tables.md)
 - [Tabs](docs/tabs.md)
 
 ## Credits
