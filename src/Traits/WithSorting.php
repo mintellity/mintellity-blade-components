@@ -2,6 +2,8 @@
 
 namespace Mintellity\BladeComponents\Traits;
 
+use Livewire\WithPagination;
+
 /**
  * Trait for LiveWire components to add sorting functionality.
  *
@@ -13,6 +15,8 @@ namespace Mintellity\BladeComponents\Traits;
  */
 trait WithSorting
 {
+    use WithPagination;
+
     /**
      * The field to sort by.
      */
@@ -85,7 +89,7 @@ trait WithSorting
      * - Sort the results by the given field.
      * - Reset page to 1.
      */
-    public function sortBy(string $field): void
+    public function setSortBy(string $field): void
     {
         // If the field is already sorted, reverse the direction.
         if ($this->sortBy === $field) {

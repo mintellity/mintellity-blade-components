@@ -16,7 +16,7 @@
         }
 
         if ($sortLivewire) {
-            $attributes = $attributes->merge(["wire:click" => "sortBy('$sortBy')"]);
+            $attributes = $attributes->merge(["wire:click" => "setSortBy('$sortBy')"]);
         }
     @endphp
 
