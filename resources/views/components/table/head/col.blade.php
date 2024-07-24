@@ -21,13 +21,13 @@
             <span class="me-1">
             @switch ($sortDirection)
                     @case('asc')
-                        <x-icon name="arrow-up-long" style="width: 1rem;"/>
+                        <x-mint::icon name="arrow-up-long" style="width: 1rem;"/>
                         @break
                     @case('desc')
-                        <x-icon name="arrow-down-long" style="width: 1rem;"/>
+                        <x-mint::icon name="arrow-down-long" style="width: 1rem;"/>
                         @break
                     @default
-                        <x-icon name="arrow-right-arrow-left" style="width: 1rem; transform: rotate(90deg) scale(1.1);"/>
+                        <x-mint::icon name="arrow-right-arrow-left" style="width: 1rem; transform: rotate(90deg) scale(1.1);"/>
                 @endswitch
         </span>
         @endif
