@@ -2,24 +2,17 @@
 
 namespace Mintellity\BladeComponents\Traits;
 
-use Livewire\WithPagination;
-
 /**
  * Trait for LiveWire components to add sorting functionality.
  *
  * @property string $sortBy The field to sort by.
  * @property string $sortDirection The sort direction ('asc' or 'desc')
  * @property-read string|array $sortableColumns Restrict sorting to these columns.
- * @property bool $storeSortInSession Whether to store the sorting in the session.
  * @property string $defaultSortBy The default field to sort by.
  * @property string $defaultSortDirection The default sort direction ('asc' or 'desc')
  */
 trait WithSorting
 {
-    use WithPagination {
-        WithPagination::queryStringWithPagination as queryStringWithPaginationTrait;
-    }
-
     /**
      * The field to sort by.
      */
@@ -29,11 +22,6 @@ trait WithSorting
      * The sort direction ('asc' or 'desc')
      */
     public string $sortDirection = 'asc';
-
-    /**
-     * The theme for the pagination.
-     */
-    protected string $paginationTheme = 'bootstrap';
 
     /**
      * The url path where the e.g. table is located.
@@ -56,33 +44,20 @@ trait WithSorting
      */
     public function renderingWithSorting(): void
     {
-        if (! $this->isValidSortBy($this->sortBy)) {
+        if (!$this->isValidSortBy($this->sortBy)) {
             $this->resetSort();
         }
     }
 
     /**
-     * Disable query string from pagination.
-     */
-    public function queryStringWithPagination(): array
-    {
-        return [];
-    }
-
-    /**
-     * Get the query string for sorting (if not stored in the session).
+     * Get the query string for sorting.
      */
     public function queryStringWithSorting(): array
     {
-        if (! $this->shouldStoreSortInSession()) {
-            return [
-                'sortBy' => ['except' => $this->getDefaultSortBy()],
-                'sortDirection' => ['except' => $this->getDefaultSortDirection()],
-                'page' => ['except' => 1],
-            ];
-        } else {
-            return [];
-        }
+        return [
+            'sortBy' => ['except' => $this->getDefaultSortBy()],
+            'sortDirection' => ['except' => $this->getDefaultSortDirection()],
+        ];
     }
 
     /**
@@ -90,7 +65,7 @@ trait WithSorting
      */
     protected function isValidSortBy(string $field): bool
     {
-        if (! property_exists($this, 'sortableColumns')) {
+        if (!property_exists($this, 'sortableColumns')) {
             return true;
         }
 
@@ -109,7 +84,6 @@ trait WithSorting
      * On-Click:
      * - Sort the results by the given field.
      * - Reset page to 1.
-     * - Store the sorting in the session.
      */
     public function sortBy(string $field): void
     {
@@ -124,14 +98,6 @@ trait WithSorting
 
         // Reset the page to 1.
         $this->resetPage();
-
-        // Store the sorting in the session.
-        if ($this->shouldStoreSortInSession()) {
-            session([
-                $this->getSessionKey('by') => $this->sortBy,
-                $this->getSessionKey('direction') => $this->sortDirection,
-            ]);
-        }
     }
 
     /**
@@ -139,19 +105,15 @@ trait WithSorting
      */
     public function resetSort(): void
     {
-        $this->sortBy = $this->getDefaultSortBy(true);
-        $this->sortDirection = $this->getDefaultSortDirection(true);
+        $this->sortBy = $this->getDefaultSortBy();
+        $this->sortDirection = $this->getDefaultSortDirection();
     }
 
     /**
      * Get the default sort column.
      */
-    protected function getDefaultSortBy(bool $skipSession = false): string
+    protected function getDefaultSortBy(): string
     {
-        if (! $skipSession && session()->has($this->getSessionKey('by'))) {
-            return session($this->getSessionKey('by'));
-        }
-
         if (property_exists($this, 'defaultSortBy')) {
             return $this->defaultSortBy;
         }
@@ -162,34 +124,12 @@ trait WithSorting
     /**
      * Get the default sort column.
      */
-    protected function getDefaultSortDirection(bool $skipSession = false): string
+    protected function getDefaultSortDirection(): string
     {
-        if (! $skipSession && session()->has($this->getSessionKey('direction'))) {
-            return session($this->getSessionKey('direction'));
-        }
-
         if (property_exists($this, 'defaultSortDirection')) {
             return $this->defaultSortDirection;
         }
 
         return 'asc';
-    }
-
-    /**
-     * Whether to store the sorting in the session.
-     */
-    public function shouldStoreSortInSession(): bool
-    {
-        return property_exists($this, 'storeSortInSession') ? $this->storeSortInSession : true;
-    }
-
-    /**
-     * Get the session key for storing the sort column.
-     */
-    protected function getSessionKey(string $identifier): string
-    {
-        $class = get_class($this);
-
-        return "sort_{$this->componentPath}_{$class}_{$identifier}";
     }
 }

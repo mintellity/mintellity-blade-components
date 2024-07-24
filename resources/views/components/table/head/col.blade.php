@@ -14,9 +14,13 @@
                 $sortDirection = null;
             }
         }
+
+        if ($sortLivewire) {
+            $attributes = $attributes->merge(["wire:click" => "sortBy('$sortBy')"]);
+        }
     @endphp
 
-    <th {{ $attributes->class(['cursor-pointer user-select-none' => $sortBy, 'text-primary' => $sortDirection,'text-end' => $finalCol])->merge(["wire:click" => "sortBy('$sortBy')"]) }}>
+    <th {{ $attributes->class(['cursor-pointer user-select-none' => $sortBy, 'text-primary' => $sortDirection, 'text-end' => $finalCol]) }}>
         @if ($sortBy)
             <span class="me-1">
             @switch ($sortDirection)
