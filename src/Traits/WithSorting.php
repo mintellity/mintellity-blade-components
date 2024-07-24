@@ -9,9 +9,7 @@ use Livewire\WithPagination;
  *
  * @property string $sortBy The field to sort by.
  * @property string $sortDirection The sort direction ('asc' or 'desc')
- *
  * @property-read string|array $sortableColumns Restrict sorting to these columns.
- *
  * @property bool $storeSortInSession Whether to store the sorting in the session.
  * @property string $defaultSortBy The default field to sort by.
  * @property string $defaultSortDirection The default sort direction ('asc' or 'desc')
@@ -58,8 +56,9 @@ trait WithSorting
      */
     public function renderingWithSorting(): void
     {
-        if (!$this->isValidSortBy($this->sortBy))
+        if (! $this->isValidSortBy($this->sortBy)) {
             $this->resetSort();
+        }
     }
 
     /**
@@ -91,7 +90,7 @@ trait WithSorting
      */
     protected function isValidSortBy(string $field): bool
     {
-        if (!property_exists($this, 'sortableColumns')) {
+        if (! property_exists($this, 'sortableColumns')) {
             return true;
         }
 
@@ -149,7 +148,7 @@ trait WithSorting
      */
     protected function getDefaultSortBy(bool $skipSession = false): string
     {
-        if (!$skipSession && session()->has($this->getSessionKey('by'))) {
+        if (! $skipSession && session()->has($this->getSessionKey('by'))) {
             return session($this->getSessionKey('by'));
         }
 
@@ -165,7 +164,7 @@ trait WithSorting
      */
     protected function getDefaultSortDirection(bool $skipSession = false): string
     {
-        if (!$skipSession && session()->has($this->getSessionKey('direction'))) {
+        if (! $skipSession && session()->has($this->getSessionKey('direction'))) {
             return session($this->getSessionKey('direction'));
         }
 
