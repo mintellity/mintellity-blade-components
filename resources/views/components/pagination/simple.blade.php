@@ -5,7 +5,7 @@
 @if ($paginator->hasPages())
     <nav role="navigation" class="d-flex justify-content-between row">
         <div class="col-sm-12 col-md-6">
-            <div class="paging_simple_numbers">
+            <div class="dataTables_paginate paging_simple_numbers">
                 <ul class="pagination">
                     @if($paginator->onFirstPage())
                         <li class="paginate_button page-item previous disabled">
