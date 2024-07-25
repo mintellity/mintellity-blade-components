@@ -24,9 +24,13 @@ Then you can use the form component to asynchronously validate the form and disp
 </x-mint::form>
 ```
 
+The form component includes the CSRF-Token out of the box. Furthermore, it supports the methods
+like `GET`, `POST`, `PUT`, `PATCH` and `DELETE` and adds the required hidden input field for the method.
+
 ## Inline labels
 
-To use inline labels, change the config value `form.inline-labels` to `true`. You can also change the width of the labels:
+To use inline labels, change the config value `form.inline-labels` to `true`. You can also change the width of the
+labels:
 
 ```php
 // config/blade-components.php
