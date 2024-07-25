@@ -84,9 +84,13 @@ document.body.addEventListener('submit', async function (e) {
         let inputField = document.getElementById(field);
         inputField?.classList.add('is-invalid');
 
-        let invalidFeedback = inputField?.closest('.invalid-feedback-group')?.querySelector('.invalid-feedback');
+        let messageContainers = inputField
+            ?.closest('.invalid-feedback-group')
+            ?.getElementsByClassName('invalid-feedback');
 
-        if (invalidFeedback)
-            invalidFeedback.innerHtml = message;
+        Array.from(messageContainers ?? [])
+            .forEach(function (el) {
+                el.innerHTML = message;
+            });
     }
 });
