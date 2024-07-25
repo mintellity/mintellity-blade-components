@@ -11,12 +11,14 @@
 @endphp
 
 @if ($paginator->hasPages())
-    <nav class="d-flex justify-items-center justify-content-between mt-4 px-2" role="navigation">
+    <nav class="d-flex justify-items-center justify-content-end mt-4 px-2" role="navigation">
         <ul class="pagination">
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
                 <li class="page-item disabled" aria-disabled="true">
-                    <span class="page-link">@lang('pagination.previous')</span>
+                    <span class="page-link">
+                        Vorherige
+                    </span>
                 </li>
             @else
                 @if(method_exists($paginator,'getCursorName'))
@@ -62,7 +64,8 @@
                     <li class="page-item">
                         <button
                             type="button"
-                            class="page-link" wire:click="nextPage('{{ $paginator->getPageName() }}')"
+                            class="page-link"
+                            wire:click="nextPage('{{ $paginator->getPageName() }}')"
                             x-on:click="{{ $scrollIntoViewJsSnippet }}"
                             wire:loading.attr="disabled">
                             Nächste
@@ -71,9 +74,9 @@
                 @endif
             @else
                 <li class="page-item disabled" aria-disabled="true">
-                        <span class="page-link">
-                            Nächste
-                        </span>
+                    <span class="page-link">
+                        Nächste
+                    </span>
                 </li>
             @endif
         </ul>

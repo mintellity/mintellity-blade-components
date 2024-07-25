@@ -3,7 +3,7 @@
 @endphp
 
 @if ($paginator->hasPages())
-    <nav class="d-flex justify-items-center justify-content-between mt-4 px-2" role="navigation">
+    <nav class="d-flex justify-items-center justify-content-end mt-4 px-2" role="navigation">
         <ul class="pagination">
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
