@@ -10,6 +10,7 @@
 <form
     action="{{ $action }}"
     method="{{ $formMethod }}"
+    data-disable-button-on-submit="{{ config('blade-components.forms.disable-button-on-submit', true) ? 'true' : 'false' }}"
     {{ $attributes->class('ajax-form')->merge(['enctype' => "multipart/form-data"]) }}>
     @csrf
 

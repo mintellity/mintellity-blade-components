@@ -14,11 +14,12 @@ document.body.addEventListener('submit', async function (e) {
     // Set button label to loading state, remember original label
     let submitButton = form.querySelector('button[type=submit]');
     let originalButtonLabel = null;
+    let disableButtonOnSubmit = form.getAttribute('data-disable-button-on-submit') === 'true';
 
     if (submitButton) {
         originalButtonLabel = submitButton?.value || submitButton?.textContent;
 
-        submitButton?.setAttribute('disabled', 'disabled');
+        disableButtonOnSubmit && submitButton?.setAttribute('disabled', 'disabled');
         submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Lädt...';
     }
 
