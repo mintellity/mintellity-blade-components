@@ -3,19 +3,18 @@
 namespace Mintellity\BladeComponents\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response;
 
 class AsyncFormRedirectMiddleware
 {
     /**
      * Send redirect URL as JSON response if request comes from AJAX.
      *
-     * @param  Closure(Request): (Response|RedirectResponse)  $next
+     * @param  Closure(Request): (Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response|RedirectResponse|JsonResponse
+    public function handle(Request $request, Closure $next): Response
     {
         // If the request is not an AJAX request, we will just return the response
         if (! $request->ajax()) {
