@@ -5,6 +5,11 @@
 
 @php
     $method = strtoupper($method);
+
+    if ($method === 'DESTROY') {
+        $method = 'DELETE';
+    }
+
     $formMethod = in_array($method, ['PUT', 'PATCH', 'DELETE']) ? 'POST' : $method;
 @endphp
 
