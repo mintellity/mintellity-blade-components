@@ -4,6 +4,7 @@
 ])
 
 @php
+    $method = strtoupper($method);
     $formMethod = in_array($method, ['PUT', 'PATCH', 'DELETE']) ? 'POST' : $method;
 @endphp
 
