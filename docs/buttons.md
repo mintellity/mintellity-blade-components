@@ -12,7 +12,7 @@
 |-----------|-----------------------------------------------------------|---------|---------------------------------------------------------------------------|
 | color     | Name of the bootstrap button color without "btn-"         | NULL    | `primary` or other valid color name, `facebook` or other valid brand name |
 | size      | Name of the bootstrap button size without "btn-"          | NULL    | `xs` `sm` `lg` `xl`                                                       |
-| type      | Outline without Background / Lightweight Background color | NULL    | `outline` `label`                                                         |
-| disabled  | Disabled state                                            | FALSE   |                                                                           |
-| pill      | Fully rounded corners                                     | FALSE   |                                                                           |
+| outline   | Outline without Background / Lightweight Background color | FALSE   |                                                                           |
+| label     | Outline without Background / Lightweight Background color | FALSE   |                                                                           |
+| rounded   | Fully rounded corners                                     | FALSE   |                                                                           |
 | square    | Equilateral width and height                              | FALSE   |                                                                           |
