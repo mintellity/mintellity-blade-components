@@ -1,5 +1,6 @@
 @props([
     'tag' => null,
+    'href' => null,
     'icon' => null,
     'color' => 'primary',
     'size' => null,
@@ -14,7 +15,7 @@
 ])
 
 @php
-    $tag = $tag ?? isset($href) ? 'a' : 'button';
+    $tag = $tag ?? $href ? 'a' : 'button';
 
     $attributes = $attributes->class([
         'btn',
@@ -28,7 +29,7 @@
 @endphp
 
 @if($tag === 'a')
-    <a {{ $attributes }}>
+    <a href="{{ $href }}" {{ $attributes }}>
         @if($icon)
             <x-mint::icon name="{{ $icon }}" class="me-2"/>
         @endif
