@@ -1,4 +1,5 @@
 @props([
+    'name',
     'type' => null
 ])
 

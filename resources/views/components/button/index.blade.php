@@ -27,7 +27,6 @@
         'rounded-pill' => $rounded,
     ]);
 
-    /** @var \Illuminate\View\ComponentAttributeBag $iconAttributes */
     $iconAttributes = $attributes->prefixed('icon');
     $attributes = $attributes->notPrefixed('icon');
 @endphp
