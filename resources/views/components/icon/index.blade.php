@@ -1,1 +1,5 @@
-<i {{ $attributes->merge(['class' => 'fa fa-' . $name]) }}></i>
+@props([
+    'type' => null
+])
+
+<i {{ $attributes->class(['fa' => !$type, 'fa-' . $type => $type, 'fa-' . $name]) }}></i>
