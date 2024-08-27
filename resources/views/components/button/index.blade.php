@@ -27,6 +27,7 @@
         'rounded-pill' => $rounded,
     ]);
 
+    /** @var \Illuminate\View\ComponentAttributeBag $iconAttributes */
     $iconAttributes = $attributes->prefixed('icon');
     $attributes = $attributes->notPrefixed('icon');
 @endphp
@@ -34,14 +35,14 @@
 @if($tag === 'a')
     <a href="{{ $href }}" {{ $attributes }}>
         @if($icon)
-            @include('mint::components.icon.index', $iconAttributes->class(['me-2'])->merge(['name' => $icon]))
+            @include('mint::components.icon.index', ['attributes' => $iconAttributes->class(['me-2'])->merge(['name' => $icon])])
         @endif
         {{ $slot }}
     </a>
 @else
     <button {{ $attributes }}>
         @if($icon)
-            @include('mint::components.icon.index', $iconAttributes->class(['me-2'])->merge(['name' => $icon]))
+            @include('mint::components.icon.index', ['attributes' => $iconAttributes->class(['me-2'])->merge(['name' => $icon])])
         @endif
         {{ $slot }}
     </button>
