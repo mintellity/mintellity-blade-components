@@ -26,19 +26,22 @@
         'btn-icon' => $square,
         'rounded-pill' => $rounded,
     ]);
+
+    $iconAttributes = $attributes->prefixed('icon');
+    $attributes = $attributes->notPrefixed('icon');
 @endphp
 
 @if($tag === 'a')
     <a href="{{ $href }}" {{ $attributes }}>
         @if($icon)
-            <x-mint::icon name="{{ $icon }}" class="me-2"/>
+            @include('mint::components.icon.index', $iconAttributes->class(['me-2'])->merge(['name' => $icon]))
         @endif
         {{ $slot }}
     </a>
 @else
     <button {{ $attributes }}>
         @if($icon)
-            <x-mint::icon name="{{ $icon }}" class="me-2"/>
+            @include('mint::components.icon.index', $iconAttributes->class(['me-2'])->merge(['name' => $icon]))
         @endif
         {{ $slot }}
     </button>
