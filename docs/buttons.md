@@ -2,7 +2,7 @@
 [Bootstrap-Component](https://getbootstrap.com/docs/5.0/components/buttons/)
 [Frest-Theme](https://demos.pixinvent.com/frest-html-admin-template/html/vertical-menu-template-bordered/ui-buttons.html)
 
-```php
+```bladehtml
 <x-mint::button>Content</x-mint::button>
 ```
 
