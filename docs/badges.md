@@ -3,7 +3,22 @@
 [Frest-Theme](https://demos.pixinvent.com/frest-html-admin-template/html/vertical-menu-template-bordered/ui-badges.html)
 
 ```bladehtml
-<x-mint::badge>Content</x-mint::badge>
+<x-mint::badge color="primary">
+    Simple Badge
+</x-mint::badge>
+
+<x-mint::badge color="primary" pill>
+    Rounded Badge
+</x-mint::badge>
+
+<x-mint::badge color="primary" square>
+    <x-mint::icon name="bell" />
+</x-mint::badge>
+
+<x-mint::button class="d-inline-block">
+    Button with notification badge
+    <x-mint::badge badge="notifications" color="danger" :rounded="true">1</x-mint::badge>
+</x-mint::button>
 ```
 
 ## Optional Attributes:
