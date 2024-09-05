@@ -19,7 +19,7 @@ To set the panel to be open, add the `active` attribute to the item. If you want
 
 ```bladehtml
 <x-mint::accordion id="tools">
-    <x-mint::accordion.item host-id="tools" title="Item 1">
+    <x-mint::accordion.item host-id="tools" title="Item 1" active no-sync>
         Content
     </x-mint::accordion.item>
     <x-mint::accordion.item host-id="tools" title="Item 2">

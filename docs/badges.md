@@ -21,6 +21,17 @@
 </x-mint::button>
 ```
 
+## Colors
+```bladehtml
+<x-mint::badge color="primary">Simple Badge</x-mint::badge>
+<x-mint::badge color="secondary">Simple Badge</x-mint::badge>
+<x-mint::badge color="success">Simple Badge</x-mint::badge>
+<x-mint::badge color="danger">Simple Badge</x-mint::badge>
+<x-mint::badge color="warning">Simple Badge</x-mint::badge>
+<x-mint::badge color="info">Simple Badge</x-mint::badge>
+<x-mint::badge color="dark">Simple Badge</x-mint::badge>
+```
+
 ## Optional Attributes:
 
 | Attribute | Description                                          | Default | Value                               |
