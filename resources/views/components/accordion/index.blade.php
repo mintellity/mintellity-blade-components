@@ -2,10 +2,6 @@
     'id'
 ])
 
-<div {{ $attributes->class(['accordion'])->except('id') }} id="{{ $id ?? '' }}">
+<div {{ $attributes->class(['accordion accordion-header-primary'])->except('id') }} id="{{ $id ?? '' }}">
     {{ $slot }}
 </div>
-
-@php
-    View::share('id');
-@endphp

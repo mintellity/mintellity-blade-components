@@ -4,16 +4,25 @@
 
 ```bladehtml
 <x-mint::accordion id="tools">
-    <x-mint::accordion.item host-id="tools" title="Title">
+    <x-mint::accordion.item host-id="tools" title="Item 1">
+        Content
+    </x-mint::accordion.item>
+    <x-mint::accordion.item host-id="tools" title="Item 2">
         Content
     </x-mint::accordion.item>
 </x-mint::accordion>
 ```
 
 ### Always Open Panel
+
+To set the panel to be open, add the `active` attribute to the item. If you want to keep the panel open when other panels are opened, add the `no-sync` attribute.
+
 ```bladehtml
 <x-mint::accordion id="tools">
-    <x-mint::accordion.item host-id="tools" title="Title" active no-sync>
+    <x-mint::accordion.item host-id="tools" title="Item 1">
+        Content
+    </x-mint::accordion.item>
+    <x-mint::accordion.item host-id="tools" title="Item 2">
         Content
     </x-mint::accordion.item>
 </x-mint::accordion>

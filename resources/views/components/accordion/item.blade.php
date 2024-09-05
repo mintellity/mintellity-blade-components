@@ -8,8 +8,14 @@
     'noSync' => false
 ])
 
-<div {{ $attributes->class(['accordion-item', 'active' => $active]) }}>
-    <h2 class="accordion-header"
+@php
+    $headerAttributes = $attributes->prefixed('header');
+    $bodyAttributes = $attributes->prefixed('body');
+    $groupAttributes = $attributes->notPrefixed(['header', 'body']);
+@endphp
+
+<div {{ $attributes->class(['accordion-item', 'card', 'active' => $active]) }}>
+    <h2 {{ $headerAttributes->class('accordion-header')->except(['id']) }}
         id="heading-{{ $id }}">
         <button
             @class(['accordion-button', 'collapsed' => !$active])
@@ -20,18 +26,15 @@
             aria-controls="collapse-{{ $id }}"
             @if($livewireIgnore) wire:ignore.self @endif>
             @if($icon)
-                <x-mint::icon name="{{$icon}}" class="me-2" />
+                <x-mint::icon name="{{$icon}}" class="me-2"/>
             @endif
             {{ $title }}
         </button>
     </h2>
     <div id="collapse-{{ $id }}"
-         @class(['accordion-collapse collapse', 'show' => $active])
+         {{ $bodyAttributes->class(['accordion-collapse collapse', 'show' => $active])->except(['id']) }}
          aria-labelledby="heading-{{ $id }}"
-         wire:ignore.self
-         @if(!$noSync)
-             data-bs-parent="#{{ $hostId }}"
-         @endif
+         @if(!$noSync) data-bs-parent="#{{ $hostId }}" @endif
          @if($livewireIgnore) wire:ignore.self @endif>
         <div class="accordion-body">
             {{ $slot }}
