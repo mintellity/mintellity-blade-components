@@ -5,7 +5,7 @@
     'finalCol' => false
 ])
 
-@if($sortBy)
+@if($sortBy && isset($this))
     @php
         if (!isset($sortDirection) && isset($this->sortBy, $this->sortDirection)) {
             if ($this->sortBy === $sortBy) {

@@ -34,14 +34,14 @@
 @if($tag === 'a')
     <a href="{{ $href }}" {{ $attributes }}>
         @if($icon)
-            @include('mint::components.icon.index', ['attributes' => $iconAttributes->class(['me-2'])->merge(['name' => $icon])])
+            @include('mint::components.icon.index', ['attributes' => $iconAttributes->class(['me-2' => $slot->isNotEmpty()])->merge(['name' => $icon])])
         @endif
         {{ $slot }}
     </a>
 @else
     <button {{ $attributes }}>
         @if($icon)
-            @include('mint::components.icon.index', ['attributes' => $iconAttributes->class(['me-2'])->merge(['name' => $icon])])
+            @include('mint::components.icon.index', ['attributes' => $iconAttributes->class(['me-2' => $slot->isNotEmpty()])->merge(['name' => $icon])])
         @endif
         {{ $slot }}
     </button>

@@ -1,11 +1,12 @@
 @props([
+    'hostId',
     'tabId' => 'tab-pane-' . Str::random(8),
     'title',
     'active' => false,
     'icon' => false
 ])
 
-@push('titles')
+@push("$hostId-titles")
     <div class="nav-item" role="presentation">
         <button
             @class(["nav-link", "active" => $active ?? false])
@@ -24,7 +25,7 @@
     </div>
 @endpush
 
-@push('contents')
+@push("$hostId-contents")
     <div @class(['tab-pane fade', 'show active' => $active ?? false])
          id="{{ $tabId }}-content"
          role="tabpanel"

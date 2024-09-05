@@ -14,12 +14,12 @@
         </{{ $navWrapperElement }}>
     @else
         <div class="nav {{$navClass}}" id="{{ $id }}" role="tablist">
-            @stack('titles')
+            @stack("$id-titles")
         </div>
     @endif
 
     <div class="tab-content" id="{{ $id }}Content">
-        @stack('contents')
+        @stack("$id-contents")
     </div>
 </div>
 
