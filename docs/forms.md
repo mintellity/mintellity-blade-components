@@ -18,7 +18,7 @@ Then you can use the form component to asynchronously validate the form and disp
 
 ```bladehtml
 
-<x-mint::form action="{{ route('route') }}" method="post">
+<x-mint::form action="/" method="post">
     <x-mint::form.input name="name" label="Name"/>
     ...
 </x-mint::form>
@@ -41,6 +41,14 @@ return [
         'inline-label-width' => '2' // col-md-2
     ]
 ];
+```
+
+```bladehtml
+<x-mint::form.input
+    name="name"
+    label="Name"
+    value="Vorname"
+    :inline-labels="true"/>
 ```
 
 # Form-Inputs
@@ -126,7 +134,7 @@ You can add other attributes to the input element, the label or the group. Just 
     selected="value"
     :options="['value' => 'Name', 'value2' => 'Name2']"
     :disabled="['value2']"
-    :placeholder="false | 'Auswählen'"
+    :placeholder="'Auswählen'"
     label:class="..."
     group:class="..."/>
 ```

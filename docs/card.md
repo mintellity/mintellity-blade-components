@@ -12,14 +12,14 @@
 ```bladehtml
 
 <x-mint::card>
-    <x-slot name="header">
+    <x-slot:header>
         <x-mint::card.header>
             <h5 class="card-title mb-0">
                 <x-mint::icon name="bell" class="me-2"/>
                 Custom Header
             </h5>
         </x-mint::card.header>
-    </x-slot>
+    </x-slot:header>
 
     Content
 </x-mint::card>
@@ -30,10 +30,10 @@
 <x-mint::card title="Card">
     Content
 
-    <x-slot name="footer">
+    <x-slot:footer>
         <x-mint::card.footer>
             <x-mint::button color="primary">Button</x-mint::button>
         </x-mint::card.footer>
-    </x-slot>
+    </x-slot:footer>
 </x-mint::card>
 ```

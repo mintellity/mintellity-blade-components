@@ -9,7 +9,7 @@
     <x-mint::dropdown.item onclik="() => console.log('on click')">
         Item 2
     </x-mint::dropdown.item>
-    <x-mint::dropdown.item href="{{ route('home') }}">
+    <x-mint::dropdown.item href="#">
         Item 3
     </x-mint::dropdown.item>
 </x-mint::dropdown>
