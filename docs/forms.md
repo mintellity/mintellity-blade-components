@@ -24,6 +24,16 @@ Then you can use the form component to asynchronously validate the form and disp
 </x-mint::form>
 ```
 
+Forms maybe submitted by a remote buttin (outside the form) by adding the class `ajax-button` and the data attribute `form`to a button:
+```bladehtml
+<button class="ajax-button" data-form="form-id">Submit</button>
+
+<x-mint::form id="form-id" action="/" method="post">
+    <x-mint::form.input name="name" label="Name"/>
+    ...
+</x-mint::form>
+```
+
 The form component includes the CSRF-Token out of the box. Furthermore, it supports the methods
 like `GET`, `POST`, `PUT`, `PATCH` and `DELETE` and adds the required hidden input field for the method.
 
