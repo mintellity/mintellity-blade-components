@@ -41,6 +41,7 @@ The following components are available in this package:
 - [Dropdown](docs/dropdown.md)
 - [Form-Inputs](docs/forms.md)
 - [Icon](docs/icon.md)
+- [Menu](docs/menu.md)
 - [Modal](docs/modal.md)
 - [Tables](docs/tables.md)
 - [Tabs](docs/tabs.md)
