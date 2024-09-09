@@ -113,9 +113,11 @@ async function submit (form, submitButton) {
         .catch((reason) => console.warn(reason))
         .finally(() => {
             // Reset button state
-            submitButton.removeAttribute('disabled');
-            submitButton.value = originalButtonLabel;
-            submitButton.textContent = originalButtonLabel;
+            if (submitButton) {
+                submitButton.removeAttribute('disabled');
+                submitButton.value = originalButtonLabel;
+                submitButton.textContent = originalButtonLabel;
+            }
         });
 
     /**
