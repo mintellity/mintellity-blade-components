@@ -120,13 +120,23 @@ function submit(form, submitButton) {
             }
         });
 
+    /**
+     * Sets a field error message
+     *
+     * @param field
+     * @param message
+     */
     function setFieldError(field, message) {
         let inputField = document.getElementById(field);
         inputField?.classList.add('is-invalid');
 
-        let invalidFeedback = inputField?.closest('.form-group')?.querySelector('.invalid-feedback');
+        let messageContainers = inputField
+            ?.closest('.invalid-feedback-group')
+            ?.getElementsByClassName('invalid-feedback');
 
-        if (invalidFeedback)
-            invalidFeedback.innerHTML = message;
+        Array.from(messageContainers ?? [])
+            .forEach(function (el) {
+                el.innerHTML = message;
+            });
     }
 }
