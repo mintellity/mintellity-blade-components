@@ -36,19 +36,15 @@ document.addEventListener('click', function (e) {
 });
 
 /**
- * Submits the form via AJAX.
- * - Shows validation errors if there are any.
- * - Redirects the user if the response contains a redirect key.
- * - Disables the submit button while the request is being processed.
+ * This script is used to submit forms via AJAX.
  *
- * @param form
- * @param submitButton
+ * To use this script, add the class "ajax-form" to the form element.
  */
-function submit(form, submitButton) {
+async function submit (form, submitButton) {
+    // Set button label to loading state, remember original label
     let originalButtonLabel = null;
     let disableButtonOnSubmit = form.getAttribute('data-disable-button-on-submit') === 'true';
 
-    // Set button label to loading state, remember original label
     if (submitButton) {
         originalButtonLabel = submitButton?.value || submitButton?.textContent;
 
@@ -116,11 +112,10 @@ function submit(form, submitButton) {
         })
         .catch((reason) => console.warn(reason))
         .finally(() => {
-            if (submitButton) {
-                submitButton.removeAttribute('disabled');
-                submitButton.value = originalButtonLabel;
-                submitButton.textContent = originalButtonLabel;
-            }
+            // Reset button state
+            submitButton.removeAttribute('disabled');
+            submitButton.value = originalButtonLabel;
+            submitButton.textContent = originalButtonLabel;
         });
 
     /**
