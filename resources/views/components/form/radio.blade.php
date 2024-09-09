@@ -1,7 +1,6 @@
 @props([
-    'label',
     'name',
-    'id' => Str::random(8),
+    'label' => null,
     'hint' => null,
     'required' => false,
     'value' => null,
@@ -20,7 +19,7 @@
 @endphp
 
 <div {{ $groupAttributes->class(["mb-3", "invalid-feedback-group", "row" => $inlineLabels]) }}>
-    @isset($label)
+    @if($label)
         <span {{ $labelAttributes->class(["d-block form-label", "col-md-$inlineLabelWidth mb-0" => $inlineLabels]) }}>
             @if ($required)
                 <span class="required">{{ $label }}</span>
@@ -28,7 +27,7 @@
                 {{ $label }}
             @endif
         </span>
-    @endisset
+    @endif
 
     @if($inlineLabels)
         <div class="col-md-{{ 12 - $inlineLabelWidth }}">@endif

@@ -1,7 +1,7 @@
 @props([
     'name',
     'id' => null,
-    'label' => '',
+    'label' => null,
     'hint' => null,
     'required' => false,
     'options' => [],
@@ -19,15 +19,18 @@
 @endphp
 
 <div {{ $groupAttributes->class(["mb-3", "invalid-feedback-group", "row" => $inlineLabels]) }}>
-    <label
-        {{ $labelAttributes->class(["form-label", "col-md-$inlineLabelWidth col-form-label" => $inlineLabels])->except('for') }}
-        for="{{ $name }}">
-        @if ($required)
-            <span class="required">{{ $label }}</span>
-        @else
-            {{ $label }}
-        @endif
-    </label>
+
+    @if($label)
+        <label
+            {{ $labelAttributes->class(["form-label", "col-md-$inlineLabelWidth col-form-label" => $inlineLabels])->except('for') }}
+            for="{{ $name }}">
+            @if ($required)
+                <span class="required">{{ $label }}</span>
+            @else
+                {{ $label }}
+            @endif
+        </label>
+    @endif
 
     @if($inlineLabels)
         <div class="col-md-{{12 - $inlineLabelWidth}}">
@@ -49,7 +52,8 @@
                     @if(is_iterable($optionLabel))
                         <optgroup label="{{ $value }}">
                             @foreach ($optionLabel as $optgroupValue => $optgroupLabel)
-                                <option value="{{ $optgroupValue }}" @if ($selected !== null && $selected == $optgroupValue) selected @endif>
+                                <option value="{{ $optgroupValue }}"
+                                        @if ($selected !== null && $selected == $optgroupValue) selected @endif>
                                     {{ $optgroupLabel }}
                                 </option>
                             @endforeach

@@ -1,7 +1,7 @@
 @props([
     'name',
     'id' => null,
-    'label' => '',
+    'label' => null,
     'type' => 'text',
     'required' => false,
     'hint' => null,
@@ -18,15 +18,17 @@
 @endphp
 
 <div {{ $groupAttributes->class(["mb-3", "invalid-feedback-group", "row" => $inlineLabels]) }}>
-    <label
-        {{ $labelAttributes->class(["form-label", "col-md-$inlineLabelWidth col-form-label" => $inlineLabels])->except('for') }}
-        for="{{ $id ?? $name }}">
-        @if ($required)
-            <span class="required">{{ $label }}</span>
-        @else
-            {{ $label }}
-        @endif
-    </label>
+    @if($label)
+        <label
+            {{ $labelAttributes->class(["form-label", "col-md-$inlineLabelWidth col-form-label" => $inlineLabels])->except('for') }}
+            for="{{ $id ?? $name }}">
+            @if ($required)
+                <span class="required">{{ $label }}</span>
+            @else
+                {{ $label }}
+            @endif
+        </label>
+    @endif
 
     @if($inlineLabels)
         <div class="col-md-{{ 12 - $inlineLabelWidth }}">@endif

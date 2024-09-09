@@ -1,7 +1,7 @@
 @props([
     'name',
     'id' => null,
-    'label' => '',
+    'label' => null,
     'required' => false,
     'hint' => null,
     'inlineLabels' => config('blade-components.forms.inline-labels', false),
@@ -15,15 +15,17 @@
 @endphp
 
 <div {{ $groupAttributes->class(["mb-3", "invalid-feedback-group", "row" => $inlineLabels]) }}>
-    <label
-        {{ $labelAttributes->class(["form-label", "col-md-$inlineLabelWidth" => $inlineLabels])->except('for') }}
-        for="{{ $name }}">
-        @if ($required)
-            <span class="required">{{ $label }}</span>
-        @else
-            {{ $label }}
-        @endif
-    </label>
+    @if($label)
+        <label
+            {{ $labelAttributes->class(["form-label", "col-md-$inlineLabelWidth" => $inlineLabels])->except('for') }}
+            for="{{ $name }}">
+            @if ($required)
+                <span class="required">{{ $label }}</span>
+            @else
+                {{ $label }}
+            @endif
+        </label>
+    @endif
 
     @if($inlineLabels)
         <div class="col-md-{{ 12 - $inlineLabelWidth }}">@endif
