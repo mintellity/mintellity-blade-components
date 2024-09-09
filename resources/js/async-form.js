@@ -46,17 +46,20 @@ document.addEventListener('click', function (e) {
  */
 function submit(form, submitButton) {
     let originalButtonLabel = null;
+    let disableButtonOnSubmit = form.getAttribute('data-disable-button-on-submit') === 'true';
 
+    // Set button label to loading state, remember original label
     if (submitButton) {
         originalButtonLabel = submitButton?.value || submitButton?.textContent;
 
-        submitButton?.setAttribute('disabled', 'disabled');
+        disableButtonOnSubmit && submitButton?.setAttribute('disabled', 'disabled');
         submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Lädt...';
     }
 
     // Remove all error messages
     form.querySelectorAll('.form-control, .form-check-input').forEach(el => el.classList.remove('is-invalid'));
 
+    // Collect form data
     const method = form.getAttribute('method') || "post";
     const action = form.getAttribute('action') || window.location.href;
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
