@@ -39,11 +39,11 @@ trait WithSorting
     {
         $this->componentPath = request()->route()->uri;
 
-        if (!request()->query('sortBy')) {
+        if (! request()->query('sortBy')) {
             $this->sortBy = $this->getDefaultSortBy();
         }
 
-        if (!request()->query('sortDirection')) {
+        if (! request()->query('sortDirection')) {
             $this->sortDirection = $this->getDefaultSortDirection();
         }
     }
