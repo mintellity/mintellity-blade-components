@@ -197,17 +197,17 @@ Requires [dropzone.js](../resources/js/dropzone.js) and [dropzone.css](../resour
 
 ```bladehtml
 
-<x-mint::dropzone
+<x-mint::form.dropzone
     label="Single File"
     max-files="1"
     name="single_file"/>
 
-<x-mint::dropzone
+<x-mint::form.dropzone
     label="Multiple Files"
     max-files="3"
     name="files[]"/>
 
-<x-mint::dropzone
+<x-mint::form.dropzone
     label="Unlimited Files"
     name="unlimited_files[]"/>
 ```

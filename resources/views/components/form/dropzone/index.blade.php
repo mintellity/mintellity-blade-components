@@ -10,8 +10,11 @@
 
 @php
     // Make sure maxFiles is a positive integer or null
-    if ($maxFiles && $maxFiles <= 0) {
-        $maxFiles = null;
+    if ($maxFiles) {
+        $maxFiles = (int) $maxFiles;
+
+        if($maxFiles <= 0)
+            $maxFiles = null;
     }
 
     $labelAttributes = $attributes->prefixed('label');
