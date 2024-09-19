@@ -67,6 +67,10 @@ class Dropzone {
                 this.removeFile(index);
             });
         });
+
+        if (this.dataTransfer.files.length === 0) {
+            this.fileList.innerText = 'Noch keine Dateien ausgewählt'
+        }
     }
 
     removeFile(index) {
