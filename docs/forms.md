@@ -24,7 +24,7 @@ Then you can use the form component to asynchronously validate the form and disp
 </x-mint::form>
 ```
 
-Forms maybe submitted by a remote buttin (outside the form) by adding the class `ajax-button` and the data attribute `form`to a button:
+Forms maybe submitted by a remote button (outside the form) by adding the class `ajax-button` and the data attribute `form`to a button:
 ```bladehtml
 <button class="ajax-button" data-form="form-id">Submit</button>
 
@@ -189,4 +189,25 @@ Requires [datepicker.js](../resources/js/datepicker.js) and [datepicker.css](../
 
 <x-mint::form.date
     name="name"/>
+```
+
+### Drag'n'Drop file input
+
+Requires [dropzone.js](../resources/js/dropzone.js) and [dropzone.css](../resources/css/dropzone.css).
+
+```bladehtml
+
+<x-mint::dropzone
+    label="Single File"
+    max-files="1"
+    name="single_file"/>
+
+<x-mint::dropzone
+    label="Multiple Files"
+    max-files="3"
+    name="files[]"/>
+
+<x-mint::dropzone
+    label="Unlimited Files"
+    name="unlimited_files[]"/>
 ```
