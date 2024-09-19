@@ -5,6 +5,8 @@ class Dropzone {
         this.fileList = dropzoneGroup.querySelector('.form-dropzone-list');
         this.dataTransfer = new DataTransfer();
 
+        this.maxFiles = this.dropzone.dataset.maxFiles || undefined;
+
         // Bind event listeners
         this.bindEvents();
     }
@@ -40,8 +42,13 @@ class Dropzone {
 
     handleFiles(files) {
         Array.from(files).forEach(file => {
+            if (this.maxFiles && this.dataTransfer.files.length >= this.maxFiles) {
+                return;
+            }
+
             this.dataTransfer.items.add(file); // Add files to DataTransfer
         });
+
         this.updateInputFiles();
         this.renderFileList();
     }
@@ -62,7 +69,7 @@ class Dropzone {
 
         // Add remove functionality to each remove button
         Array.from(this.fileList.querySelectorAll('.btn-remove')).forEach(btn => {
-            btn.addEventListener('click', (e) => {
+            btn.addEventListener('click', () => {
                 const index = btn.dataset.index;
                 this.removeFile(index);
             });
