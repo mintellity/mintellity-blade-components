@@ -20,10 +20,10 @@
         }
     @endphp
 
-    <th {{ $attributes->class(['cursor-pointer user-select-none' => $sortBy, 'text-primary' => $sortDirection, 'text-end' => $finalCol]) }}>
+    <th {{ $attributes->class(['cursor-pointer user-select-none' => $sortBy ?? false, 'text-primary' => $sortDirection ?? false, 'text-end' => $finalCol]) }}>
         @if ($sortBy)
             <span class="me-1">
-            @switch ($sortDirection)
+            @switch ($sortDirection ?? null)
                     @case('asc')
                         <x-mint::icon name="arrow-up-long" style="width: 1rem;"/>
                         @break

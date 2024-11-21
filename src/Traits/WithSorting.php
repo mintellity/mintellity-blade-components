@@ -1,31 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mintellity\BladeComponents\Traits;
 
 use Livewire\WithPagination;
 
 /**
  * Trait for LiveWire components to add sorting functionality.
- *
- * @property string $sortBy The field to sort by.
- * @property string $sortDirection The sort direction ('asc' or 'desc')
- * @property-read string|array $sortableColumns Restrict sorting to these columns.
- * @property string $defaultSortBy The default field to sort by.
- * @property string $defaultSortDirection The default sort direction ('asc' or 'desc')
  */
 trait WithSorting
 {
-    use WithPagination;
-
-    /**
-     * The field to sort by.
-     */
-    public string $sortBy = 'created_at';
-
-    /**
-     * The sort direction ('asc' or 'desc')
-     */
-    public string $sortDirection = 'asc';
+    use WithBaseSorting, WithPagination;
 
     /**
      * The url path where the e.g. table is located.
@@ -39,18 +25,11 @@ trait WithSorting
     {
         $this->componentPath = request()->route()->uri;
 
-        $this->sortBy = $this->getDefaultSortBy();
-        $this->sortDirection = $this->getDefaultSortDirection();
-    }
+        if (request('sortBy') === null)
+            $this->sortBy = $this->getDefaultSortBy();
 
-    /**
-     * Check if the sorting is valid. If not, reset the sorting.
-     */
-    public function renderingWithSorting(): void
-    {
-        if (! $this->isValidSortBy($this->sortBy)) {
-            $this->resetSort();
-        }
+        if (request('sortDirection') === null)
+            $this->sortDirection = $this->getDefaultSortDirection();
     }
 
     /**
@@ -65,75 +44,21 @@ trait WithSorting
     }
 
     /**
-     * Whether the given field is a valid field to sort by.
+     * Check if the sorting is valid. If not, reset the sorting.
      */
-    protected function isValidSortBy(string $field): bool
+    public function renderingWithSorting(): void
     {
-        if (! property_exists($this, 'sortableColumns')) {
-            return true;
+        if (! $this->isValidSortBy($this->sortBy)) {
+            $this->resetSort();
         }
-
-        if (is_string($this->sortableColumns) && ($this->sortableColumns === '*' || $this->sortableColumns === $field)) {
-            return true;
-        }
-
-        if (is_array($this->sortableColumns) && in_array($field, $this->sortableColumns)) {
-            return true;
-        }
-
-        return false;
     }
 
     /**
-     * On-Click:
-     * - Sort the results by the given field.
-     * - Reset page to 1.
+     * Reset pagination.
      */
-    public function setSortBy(string $field): void
+    public function updatedSort(): void
     {
-        // If the field is already sorted, reverse the direction.
-        if ($this->sortBy === $field) {
-            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
-        } else {
-            $this->sortDirection = 'asc';
-        }
-
-        $this->sortBy = $field;
-
         // Reset the page to 1.
         $this->resetPage();
-    }
-
-    /**
-     * Reset the sorting.
-     */
-    public function resetSort(): void
-    {
-        $this->sortBy = $this->getDefaultSortBy();
-        $this->sortDirection = $this->getDefaultSortDirection();
-    }
-
-    /**
-     * Get the default sort column.
-     */
-    protected function getDefaultSortBy(): string
-    {
-        if (property_exists($this, 'defaultSortBy')) {
-            return $this->defaultSortBy;
-        }
-
-        return 'created_at';
-    }
-
-    /**
-     * Get the default sort column.
-     */
-    protected function getDefaultSortDirection(): string
-    {
-        if (property_exists($this, 'defaultSortDirection')) {
-            return $this->defaultSortDirection;
-        }
-
-        return 'asc';
     }
 }
