@@ -25,11 +25,13 @@ trait WithSorting
     {
         $this->componentPath = request()->route()->uri;
 
-        if (request('sortBy') === null)
+        if (request('sortBy') === null) {
             $this->sortBy = $this->getDefaultSortBy();
+        }
 
-        if (request('sortDirection') === null)
+        if (request('sortDirection') === null) {
             $this->sortDirection = $this->getDefaultSortDirection();
+        }
     }
 
     /**

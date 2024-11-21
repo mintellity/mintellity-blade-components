@@ -90,7 +90,7 @@ trait WithBaseSorting
             return true;
         }
 
-        if (!property_exists($this, 'sortableColumns')) {
+        if (! property_exists($this, 'sortableColumns')) {
             return true;
         }
 

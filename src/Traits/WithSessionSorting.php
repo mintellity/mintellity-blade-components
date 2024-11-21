@@ -50,7 +50,7 @@ trait WithSessionSorting
      */
     public function renderingWithSessionSorting(): void
     {
-        if (!$this->isValidSortBy($this->sortBy)) {
+        if (! $this->isValidSortBy($this->sortBy)) {
             $this->resetSort();
         }
     }
