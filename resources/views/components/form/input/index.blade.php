@@ -42,7 +42,6 @@
                     id="{{ $id ?? $name }}"
                     name="{{ $name }}"
                     type="{{ $type }}"
-                    @if($required) required @endif
                     {{ $inputAttributes->class(["form-control", "is-invalid" => $errors->has($name)])->except(['id', 'name', 'type', 'required']) }}>
 
 

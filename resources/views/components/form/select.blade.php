@@ -39,7 +39,6 @@
             <select
                 id="{{ $id ?? $name }}"
                 name="{{ $name }}"
-                @if ($required) required @endif
                 {{ $inputAttributes->class(["form-select", "is-invalid" => $errors->has($name)])->except(['id', 'name', 'required']) }}>
 
                 @if($placeholder !== false)
