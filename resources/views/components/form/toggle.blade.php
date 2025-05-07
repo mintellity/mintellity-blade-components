@@ -36,7 +36,6 @@
                     id="{{ $name }}"
                     name="{{ $id ?? $name }}"
                     type="checkbox"
-                    @if($required) required @endif
                     @if($checked) checked @endif
                     {{ $inputAttributes->class(["form-check-input", "is-invalid" => $errors->has($name)])->except('type') }}>
 
